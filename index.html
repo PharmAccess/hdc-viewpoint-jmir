@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Daniel Kapitan">
+<meta name="author" content="Melle Sieswerda">
+<meta name="keywords" content="OMOP, OpenEHR, FHIR, secondary use, data platform, digital platform">
+
+<title>Practical considerations for convergence of health information standards</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open" id="toc-it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open" class="nav-link active" data-scroll-target="#it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open">It is not just about convergence or collision, but also about the paradox of open</a></li>
+  <li><a href="#openness-of-digital-platforms-and-data-platforms" id="toc-openness-of-digital-platforms-and-data-platforms" class="nav-link" data-scroll-target="#openness-of-digital-platforms-and-data-platforms">Openness of digital platforms and data platforms</a></li>
+  <li><a href="#first-learning-from-reported-federated-open-data-architectures" id="toc-first-learning-from-reported-federated-open-data-architectures" class="nav-link" data-scroll-target="#first-learning-from-reported-federated-open-data-architectures">First learning from reported federated open data architectures</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (elsevier)</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Practical considerations for convergence of health information standards</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Daniel Kapitan <a href="mailto:daniel@kapitan.net" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-8979-9194" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Dutch Hospital Data
+          </p>
+        <p class="affiliation">
+            PharmAccess Foundation
+          </p>
+        <p class="affiliation">
+            Eindhoven University of Technology
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Melle Sieswerda </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Integral Cancer Registry Netherlands
+          </p>
+        <p class="affiliation">
+            Maastricht University
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>TO DO: add abstract.</p>
+  </div>
+</div>
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>OMOP, OpenEHR, FHIR, secondary use, data platform, digital platform</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open" class="level2">
+<h2 class="anchored" data-anchor-id="it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open">It is not just about convergence or collision, but also about the paradox of open</h2>
+<p>Tsafnat et al.&nbsp;rightly draw attention to the fragmented state of affairs of open data standards in health care <span class="citation" data-cites="tsafnat2024converge">(<a href="#ref-tsafnat2024converge" role="doc-biblioref">Tsafnat et al., 2024</a>)</span>. Their trichotomy of i) Clinical care and administration; ii) Data exhange and iii) Longitudindal analysis as the three main application domains provides a good starting point to reason about overarching design requirements applicable to across all domains, whilst at the same time allowing for specific requirements unique to each domain. The default working hypothesis of using OpenEHR, FHIR respectively OMOP for each of these three domains is logical, given the origins of these standards and intended use case.</p>
+<p>We do feel, however, that the conceptualization of the issue at hand misses a number of critical details, which are often the root cause why real-world implementations of open data platforms are so notoriously difficult. One of these details relate to a paper by Reynolds and Wyatt who argue “… for the superiority of open source licensing to promote safer, more effective health care information systems. We claim that open source licensing in health care information systems is essential to rational procurement strategy.” <span class="citation" data-cites="reynolds2011open">(<a href="#ref-reynolds2011open" role="doc-biblioref">Reynolds and Wyatt, 2011</a>)</span> that is referenced by Tsafnat et al.&nbsp;but receives little further discussion. In this viewpoint, we want to elucidate and extend the framework put forward by Tsafnat at all by viewing it through the perspective of “the paradox of open” <span class="citation" data-cites="keller2021paradox">(<a href="#ref-keller2021paradox" role="doc-biblioref">Keller and Tarkowski, 2021</a>)</span>. Subsequently, we take this perspective and compare how five reported … and our own project, PlUGIN.</p>
+</section>
+<section id="openness-of-digital-platforms-and-data-platforms" class="level2">
+<h2 class="anchored" data-anchor-id="openness-of-digital-platforms-and-data-platforms">Openness of digital platforms and data platforms</h2>
+<p>Building on their framework, this viewpoint addresses these details based on our experience of designing and implementing federated data platform for secondary use. In the following, we will first problematize the topic by considering the paradox of open related to digital platforms and data platforms. Second, we will</p>
+<ul>
+<li><span class="citation" data-cites="cascini2024health">(<a href="#ref-cascini2024health" role="doc-biblioref">Cascini et al., 2024</a>)</span>: Primary vs.&nbsp;secondary use</li>
+<li><span class="citation" data-cites="rieke2020future">(<a href="#ref-rieke2020future" role="doc-biblioref">Rieke et al., 2020</a>)</span>: the future of data sharing is federated</li>
+<li><span class="citation" data-cites="keller2021paradox">(<a href="#ref-keller2021paradox" role="doc-biblioref">Keller and Tarkowski, 2021</a>)</span>: paradox of open</li>
+<li><span class="citation" data-cites="dereuver2018digital dereuver2022openness">(<a href="#ref-dereuver2022openness" role="doc-biblioref">de Reuver et al., 2022</a>; <a href="#ref-dereuver2018digital" role="doc-biblioref">de Reuver et al., 2018</a>)</span>: openness of digital platforms, openness of data platforms</li>
+</ul>
+<p>Note that Tsafnat et al.&nbsp;already reference paper on open source from 2011 that states “”</p>
+</section>
+<section id="first-learning-from-reported-federated-open-data-architectures" class="level2">
+<h2 class="anchored" data-anchor-id="first-learning-from-reported-federated-open-data-architectures">First learning from reported federated open data architectures</h2>
+<ul>
+<li>KETOS OMOP-FHIR <span class="citation" data-cites="gruendner2019ketos">(<a href="#ref-gruendner2019ketos" role="doc-biblioref">Gruendner et al., 2019</a>)</span></li>
+<li>Personal Health Train on FHIR <span class="citation" data-cites="choudhury2020personal">(<a href="#ref-choudhury2020personal" role="doc-biblioref">Choudhury et al., 2020</a>)</span></li>
+<li>OHDSI analytics <span class="citation" data-cites="khalid2021standardized">(<a href="#ref-khalid2021standardized" role="doc-biblioref">Khalid et al., 2021</a>)</span></li>
+<li>CODA project <span class="citation" data-cites="mullie2023coda">(<a href="#ref-mullie2023coda" role="doc-biblioref">Mullie et al., 2023</a>)</span></li>
+<li>GenoMed4All, in evalution phase for -omis <span class="citation" data-cites="cremonesi2023need">(<a href="#ref-cremonesi2023need" role="doc-biblioref">Cremonesi et al., 2023</a>)</span></li>
+<li>PLUGIN</li>
+</ul>
+</section>
+<section id="bibliography" class="level1 unnumbered">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cascini2024health" class="csl-entry" role="listitem">
+Cascini, F., Pantovic, A., Al-Ajlouni, Y.A., Puleo, V., De Maio, L., Ricciardi, W., 2024. Health data sharing attitudes towards primary and secondary use of data: A systematic review. eClinicalMedicine 71, 102551. <a href="https://doi.org/10.1016/j.eclinm.2024.102551">https://doi.org/10.1016/j.eclinm.2024.102551</a>
+</div>
+<div id="ref-choudhury2020personal" class="csl-entry" role="listitem">
+Choudhury, A., van Soest, J., Nayak, S., Dekker, A., 2020. Personal <span>Health Train</span> on <span>FHIR</span>: <span>A Privacy Preserving Federated Approach</span> for <span>Analyzing FAIR Data</span> in <span>Healthcare</span>, in: Bhattacharjee, A., Borgohain, S.Kr., Soni, B., Verma, G., Gao, X.-Z. (Eds.), Machine <span>Learning</span>, <span>Image Processing</span>, <span>Network Security</span> and <span>Data Sciences</span>, Communications in <span>Computer</span> and <span>Information Science</span>. Springer, Singapore, pp. 85–95. <a href="https://doi.org/10.1007/978-981-15-6315-7_7">https://doi.org/10.1007/978-981-15-6315-7_7</a>
+</div>
+<div id="ref-cremonesi2023need" class="csl-entry" role="listitem">
+Cremonesi, F., Planat, V., Kalokyri, V., Kondylakis, H., Sanavia, T., Miguel Mateos Resinas, V., Singh, B., Uribe, S., 2023. The need for multimodal health data modeling: <span>A</span> practical approach for a federated-learning healthcare platform. Journal of Biomedical Informatics 141, 104338. <a href="https://doi.org/10.1016/j.jbi.2023.104338">https://doi.org/10.1016/j.jbi.2023.104338</a>
+</div>
+<div id="ref-dereuver2022openness" class="csl-entry" role="listitem">
+de Reuver, M., Ofe, H., Agahari, W., Abbas, A.E., Zuiderwijk, A., 2022. The openness of data platforms: A research agenda, in: Proceedings of the 1st <span>International Workshop</span> on <span>Data Economy</span>, <span>DE</span> ’22. Association for Computing Machinery, New York, NY, USA, pp. 34–41. <a href="https://doi.org/10.1145/3565011.3569056">https://doi.org/10.1145/3565011.3569056</a>
+</div>
+<div id="ref-dereuver2018digital" class="csl-entry" role="listitem">
+de Reuver, M., Sørensen, C., Basole, R.C., 2018. The <span>Digital Platform</span>: <span>A Research Agenda</span>. Journal of Information Technology 33, 124–135. <a href="https://doi.org/10.1057/s41265-016-0033-3">https://doi.org/10.1057/s41265-016-0033-3</a>
+</div>
+<div id="ref-gruendner2019ketos" class="csl-entry" role="listitem">
+Gruendner, J., Schwachhofer, T., Sippl, P., Wolf, N., Erpenbeck, M., Gulden, C., Kapsner, L.A., Zierk, J., Mate, S., Stürzl, M., Croner, R., Prokosch, H.-U., Toddenroth, D., 2019. <span>KETOS</span>: <span>Clinical</span> decision support and machine learning as a service – <span>A</span> training and deployment platform based on <span>Docker</span>, <span>OMOP-CDM</span>, and <span>FHIR Web Services</span>. PLOS ONE 14, e0223010. <a href="https://doi.org/10.1371/journal.pone.0223010">https://doi.org/10.1371/journal.pone.0223010</a>
+</div>
+<div id="ref-keller2021paradox" class="csl-entry" role="listitem">
+Keller, P., Tarkowski, A., 2021. The <span>Paradox</span> of <span>Open</span>. Open Future.
+</div>
+<div id="ref-khalid2021standardized" class="csl-entry" role="listitem">
+Khalid, S., Yang, C., Blacketer, C., Duarte-Salles, T., Fernández-Bertolín, S., Kim, C., Park, R.W., Park, J., Schuemie, M.J., Sena, A.G., Suchard, M.A., You, S.C., Rijnbeek, P.R., Reps, J.M., 2021. A standardized analytics pipeline for reliable and rapid development and validation of prediction models using observational health data. Computer Methods and Programs in Biomedicine 211, 106394. <a href="https://doi.org/10.1016/j.cmpb.2021.106394">https://doi.org/10.1016/j.cmpb.2021.106394</a>
+</div>
+<div id="ref-mullie2023coda" class="csl-entry" role="listitem">
+Mullie, L., Afilalo, J., Archambault, P., Bouchakri, R., Brown, K., Buckeridge, D.L., Cavayas, Y.A., Turgeon, A.F., Martineau, D., Lamontagne, F., Lebrasseur, M., Lemieux, R., Li, J., Sauthier, M., St-Onge, P., Tang, A., Witteman, W., Chassé, M., 2023. <span>CODA</span>: An open-source platform for federated analysis and machine learning on distributed healthcare data. Journal of the American Medical Informatics Association ocad235. <a href="https://doi.org/10.1093/jamia/ocad235">https://doi.org/10.1093/jamia/ocad235</a>
+</div>
+<div id="ref-reynolds2011open" class="csl-entry" role="listitem">
+Reynolds, C.J., Wyatt, J.C., 2011. Open <span>Source</span>, <span>Open Standards</span>, and <span>Health Care Information Systems</span>. Journal of Medical Internet Research 13, e1521. <a href="https://doi.org/10.2196/jmir.1521">https://doi.org/10.2196/jmir.1521</a>
+</div>
+<div id="ref-rieke2020future" class="csl-entry" role="listitem">
+Rieke, N., Hancox, J., Li, W., Milletarì, F., Roth, H.R., Albarqouni, S., Bakas, S., Galtier, M.N., Landman, B.A., Maier-Hein, K., Ourselin, S., Sheller, M., Summers, R.M., Trask, A., Xu, D., Baust, M., Cardoso, M.J., 2020. The future of digital health with federated learning. npj Digital Medicine 3, 1–7. <a href="https://doi.org/10.1038/s41746-020-00323-1">https://doi.org/10.1038/s41746-020-00323-1</a>
+</div>
+<div id="ref-tsafnat2024converge" class="csl-entry" role="listitem">
+Tsafnat, G., Dunscombe, R., Gabriel, D., Grieve, G., Reich, C., 2024. Converge or collide? <span>Making</span> sense of a plethora of open data standards in healthcare: An editorial.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

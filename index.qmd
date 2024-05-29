@@ -1,0 +1,73 @@
+---
+title: "Practical considerations for convergence of health information standards"
+format:
+  elsevier-html:
+    toc: true
+    toc-depth: 2
+    fig-cap-location: top
+    code-fold: true
+  elsevier-pdf:
+    keep-tex: true
+    journal:
+      name: JIMR
+      cite-style: authoryear
+author:
+  - name: Daniel Kapitan
+    affiliations:
+      - name: Dutch Hospital Data
+        city: Utrecht
+        country: the Netherlands
+      - name: PharmAccess Foundation
+        city: Amsterdam
+        country: the Netherlands
+      - name: Eindhoven University of Technology
+        city: Eindhoven
+        country: the Netherlands
+    orcid: 0000-0001-8979-9194
+    email: daniel@kapitan.net
+  - name: Melle Sieswerda
+    affiliations:
+      - name: Integral Cancer Registry Netherlands
+        city: Eindhoven
+        country: the Netherlands
+      - name: Maastricht University
+        city: Maastricht
+        country: the Netherlands
+
+abstract: |
+  TO DO: add abstract.
+keywords: [OMOP, OpenEHR, FHIR, secondary use, data platform, digital platform]
+reference-section-title: References
+bibliography: plugin.bib
+---
+
+## It is not just about convergence or collision, but also about the paradox of open
+
+Tsafnat et al. rightly draw attention to the fragmented state of affairs of open data standards in health care [@tsafnat2024converge]. Their trichotomy of i) Clinical care and administration; ii) Data exhange and iii) Longitudindal analysis as the three main application domains provides a good starting point to reason about overarching design requirements applicable to across all domains, whilst at the same time allowing for specific requirements unique to each domain. The default working hypothesis of using OpenEHR, FHIR respectively OMOP for each of these three domains is logical, given the origins of these standards and intended use case.
+
+We do feel, however, that the conceptualization of the issue at hand misses a number of critical details, which are often the root cause why real-world implementations of open data platforms are so notoriously difficult. One of these details relate to a paper by Reynolds and Wyatt who argue "... for the superiority of open source licensing to promote safer, more effective health care information systems. We claim that open source licensing in health care information systems is essential to rational procurement strategy." [@reynolds2011open] that is referenced by Tsafnat et al. but receives little further discussion. In this viewpoint, we want to elucidate and extend the framework put forward by Tsafnat at all by viewing it through the perspective of "the paradox of open" [@keller2021paradox]. Subsequently, we take this perspective and compare how five reported ... and our own project, PlUGIN. 
+
+
+## Openness of digital platforms and data platforms
+
+Building on their framework, this viewpoint addresses these details based on our experience of designing and implementing federated data platform for secondary use. In the following, we will first problematize the topic by considering the paradox of open related to digital platforms and data platforms. Second, we will
+
+- [@cascini2024health]: Primary vs. secondary use
+- [@rieke2020future]: the future of data sharing is federated
+- [@keller2021paradox]: paradox of open
+- [@dereuver2018digital;@dereuver2022openness]: openness of digital platforms, openness of data platforms
+
+Note that Tsafnat et al. already reference paper on open source from 2011 that states ""
+
+## First learning from reported federated open data architectures
+
+- KETOS OMOP-FHIR [@gruendner2019ketos]
+- Personal Health Train on FHIR [@choudhury2020personal]
+- OHDSI analytics [@khalid2021standardized]
+- CODA project [@mullie2023coda]
+- GenoMed4All, in evalution phase for -omis [@cremonesi2023need]
+- PLUGIN
+
+
+
+
