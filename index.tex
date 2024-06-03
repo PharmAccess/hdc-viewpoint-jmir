@@ -128,8 +128,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Practical considerations for convergence of health information standards},
-  pdfauthor={Daniel Kapitan; Melle Sieswerda},
+  pdftitle={Beyond the paradox of interoperability in open health data standards},
+  pdfauthor={Daniel Kapitan; Melle Sieswerda; Andre Dekker},
   pdfkeywords={OMOP, OpenEHR, FHIR, secondary use, data
 platform, digital platform},
   colorlinks=true,
@@ -143,13 +143,17 @@ platform, digital platform},
 \begin{document}
 
 \begin{frontmatter}
-\title{Practical considerations for convergence of health information
+\title{Beyond the paradox of interoperability in open health data
 standards}
 \author[1,2,3]{Daniel Kapitan%
 %
 }
  \ead{daniel@kapitan.net} 
 \author[4,5]{Melle Sieswerda%
+%
+}
+
+\author[5]{Andre Dekker%
 %
 }
 
@@ -173,9 +177,23 @@ Netherlands},countrysep={,},postcodesep={}}
 \cortext[cor1]{Corresponding author}
 
 
+
         
 \begin{abstract}
-TO DO: add abstract.
+In response to the proposal of Tsafnat et al.~to converge towards three
+open health data standards, we discuss two specific contexts, namely
+standardization of i) health data for federated learning, and ii) health
+data sharing in low- and middle income countries (LMICs). Based on our
+ongoing work in both areas, we provide a critical reflection on the
+proposed alignment of using OpenEHR, FHIR and OMOP as the default
+standard for the three domains of clinical care and administration, data
+exchange and longitudinal analysis, respectively. We find that for the
+two contexts considered there, this trichotomy does not do justice to
+details that are crucial in real-world implementations. This perspetive
+describes more specific design principles and implementation choices for
+these two types of health data sharing. In both case, we observe a
+strong convergence towards FHIR, while OMOP is used as an alternative or
+in combination with FHIR for federated learning.
 \end{abstract}
 
 
@@ -189,78 +207,282 @@ platform \sep
 \end{keyword}
 \end{frontmatter}
     
-\section{It is not just about convergence or collision, but also about
-the paradox of
-open}\label{it-is-not-just-about-convergence-or-collision-but-also-about-the-paradox-of-open}
+\section{Looking beyond the paradox of
+interoperability}\label{looking-beyond-the-paradox-of-interoperability}
 
-Tsafnat et al.~rightly draw attention to the fragmented state of affairs
-of open data standards in health care \citep{tsafnat2024converge}. Their
-trichotomy of i) Clinical care and administration; ii) Data exhange and
-iii) Longitudindal analysis as the three main application domains
-provides a good starting point to reason about overarching design
-requirements applicable to across all domains, whilst at the same time
-allowing for specific requirements unique to each domain. The default
-working hypothesis of using OpenEHR, FHIR respectively OMOP for each of
-these three domains is logical, given the origins of these standards and
-intended use case.
+``A paradox of health care interoperability is the existence of a large
+number of standards exists with significant overlap among them,'' say
+Tsafnat et al., followed by a call to actions towards the health
+informatics community to put effort into establishing convergence and
+preventing collision \citep{tsafnat2024converge}. To do so, they propose
+to converge on three open standards, namely i) OpenEHR for clinical care
+and administration; ii) Fast Health Interoperability Resources (FHIR)
+for data exhange and iii) Observational Medical Outcomes Partnership
+Common Data Model (OMOP) for longitudinal analysis. They argue that open
+data standards, backed by engaged communities, hold an advantage over
+proprietary ones and therefore should be chosen as the steppingstones
+towards achieving true interoperability.
 
-We do feel, however, that the conceptualization of the issue at hand
-misses a number of critical details, which are often the root cause why
-real-world implementations of open data platforms are so notoriously
-difficult. One of these details relate to a paper by Reynolds and Wyatt
-who argue ``\ldots{} for the superiority of open source licensing to
-promote safer, more effective health care information systems. We claim
-that open source licensing in health care information systems is
-essential to rational procurement strategy.'' \citep{reynolds2011open}
-that is referenced by Tsafnat et al.~but receives little further
-discussion. In this viewpoint, we want to elucidate and extend the
-framework put forward by Tsafnat at all by viewing it through the
-perspective of ``the paradox of open'' \citep{keller2021paradox}.
-Subsequently, we take this perspective and compare how five reported
-\ldots{} and our own project, PlUGIN.
+While we support their high-level rationale and intention, we feel their
+proposed trichotomy does not do justice to details that are crucial in
+real-world implementations. This viewpoint provides a critical
+reflection on the their proposed framework in three parts. First, we
+reflect on salient differences between the three open standards from the
+perspective of the notion of openness of digitalplatforms
+\citep{dereuver2018digital}, data platforms \citep{dereuver2022openness}
+and the paradox of open \citep{keller2021paradox}. Subsequently, we
+present our preliminary findings in designing and implementating health
+data platforms in two specific contexts, namely i) platforms for
+federated learning on shared health data; and ii) health data platforms
+for low and middle income countries (LMICs). We conclude with \ldots{}
 
-\section{Openness of digital platforms and data
-platforms}\label{openness-of-digital-platforms-and-data-platforms}
+\section{The paradox of open for health data
+standards}\label{the-paradox-of-open-for-health-data-standards}
 
-Building on their framework, this viewpoint addresses these details
-based on our experience of designing and implementing federated data
-platform for secondary use. In the following, we will first problematize
-the topic by considering the paradox of open related to digital
-platforms and data platforms. Second, we will
+Besides the paradox of interoperability put forward by Tsafnat et al.,
+we argue that although open standards are a necessary condition for
+convergence of health data standarization, but that is not a sufficient
+condition. We posit that open source implementations of components,
+libraries etc. constitute another necessary condition for establishing a
+flourishing health data platform. Research on digital platforms and
+associated ecosystems have pointed out to the importance of the platform
+openness, not only in term of standards, but also in term of
+extensibility of the code base, availibility of complements to the core
+technical platform (in our case the data standard) and availibility of
+executable pieces of software \citep{dereuver2018digital}. Only when
+these aspects of digital platforms are fullfilled can we resonably
+expect that the platform will indeed be longlived.
+
+In what they call the paradox of open, Keller and Tarkowsi argue that
+this conventional approach of open standards and open source flourish
+under two types of conditions \citep{keller2021paradox}. First, projects
+where many people contribute to the creation of a common resource have
+proven succesful. This is the story of Wikipedia, OpenStreetMap,
+Blender.org, and the countless free software projects that provide much
+of the internet's infrastructure. Indeed, Tsafnat et al.~have explicitly
+taken into account that ``an engaged and vibrant community is a major
+advantage for the longevity of the data standards it uses,'' which has
+informed their proposal to convergence towards OMOP, FHIR en OpenEHR.
+However, the emphasis on open source implementations is somewhat
+overlooked, although Tsafnat et al.~in fact do reference work by
+Reynolds and Wyatt who already argued in 2011 ``\ldots{} for the
+superiority of open source licensing to promote safer, more effective
+health care information systems. We claim that open source licensing in
+health care information systems is essential to rational procurement
+strategy'' \citep{reynolds2011open}.
+
+The second condition which has proven fruitful for the conventional open
+approach, pertains to circumstances where opening up is the result of
+external incentives or requirements, rather than voluntary actions. This
+is the story of publicly-funded knowledge production like Open Access
+academic publications, cultural heritage collections in the Public
+Domain, Open Educational Resources (OER), and Open Government data. A
+canonical example in the birth of the GSM standard, which was mandated
+by European legislation.\footnote{See
+  \url{https://en.wikipedia.org/wiki/GSM\#Initial_European_development}
+  for details.}
+
+Reflecting on this perspective on openness, we observer a salient
+difference between FHIR vis-a-vis OpenEHR and OMOP, namely that the
+former is the only one that has been mandated (or at least strongly
+recommended) in some jurisdictions. In the US, the Office of the
+National Coordinator for Health Information Technology (ONC) and the
+Centers for Medicare and Medicaid Services (CMS) has introduced a steady
+stream of new regulations, criteria, and deadlines in Health IT that has
+resulted in significant adoption of FHIR \citep{firely2023fhir}. In
+India, the open Health Claims Exchange protocol specification - which is
+based on FHIR - has been mandated by the Indian government as the
+standard for e-claims handling \citep{hcx}. The African Union recommends
+all new implementations and digital health system improvements use FHIR
+as the primary mechanism for data exchange \citep{tilahun2023african},
+but doesn't say anything about the use of, for example, OpenEHR for
+administrative systems of record. These external incentives have
+resulted in a large boost in both commercial and open source development
+activities in the FHIR ecosystem. One such example is the speed with
+which the Bulk FHIR API has been defined and implemented in almost all
+major implementations \citep{mandl2020push, jones2021landscape}. It has
+also led to more people voluntarily contributing to FHIR-related open
+source projects, which has resulted in a wide offering of FHIR
+components across major technology stacks (Java, Python, .NET).
+
+In comparison, the ecosystem of OMOP and OpenEHR is have not yet
+profited from external incentives to grow their community \ldots{}
 
 \begin{itemize}
 \tightlist
 \item
-  \citep{cascini2024health}: Primary vs.~secondary use
+  smaller than that of FHIR
 \item
-  \citep{rieke2020future}: the future of data sharing is federated
+  The majority of OMOP components are run by Observational Health Data
+  Science and Informatics (OHDSI) \ldots Say something that OMOP still
+  has a relatively large ecosystem, with R libraries, pyOMOP etc.
 \item
-  \citep{keller2021paradox}: paradox of open
-\item
-  \citep{dereuver2018digital, dereuver2022openness}: openness of digital
-  platforms, openness of data platforms
+  The OpenEHR, however, seems subscritical. We are not judging the
+  content and approach of OpenEHR, but there are just so few
+  implementations.
 \end{itemize}
 
-Note that Tsafnat et al.~already reference paper on open source from
-2011 that states ``\,''
+More than a decade later, we observe that only a very small fraction of
+health IT systems are based on open source, the majority of which are
+used in LMICs which we will discuss later \citep{digitalpublicgoods}.
 
-\section{First learning from reported federated open data
-architectures}\label{first-learning-from-reported-federated-open-data-architectures}
+\section{Standarization of health data for federated
+learning}\label{standarization-of-health-data-for-federated-learning}
 
 \begin{itemize}
 \tightlist
 \item
-  KETOS OMOP-FHIR \citep{gruendner2019ketos}
+  Based on ongoing work witht the PLUGIN Healthcare consortium
+  (https://plugin.healthcare)
 \item
-  Personal Health Train on FHIR \citep{choudhury2020personal}
+  The future of secondary health data sharing is federated
+  \citep{rieke2020future}
 \item
-  OHDSI analytics \citep{khalid2021standardized}
+  As part of our work we have done a search for federated data sharing
+  projects/solution. Disclaimer, this is not a systematic review, but
+  intended to illustrate current approaches that are taken
 \item
-  CODA project \citep{mullie2023coda}
+  We observe that FHIR and OMOP are the two standards that are used.
+  Briefly explain each of the projects that we have found
+
+  \begin{itemize}
+  \tightlist
+  \item
+    OMOP:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      OHDSI analytics \citep{khalid2021standardized}
+    \end{itemize}
+  \item
+    FHIR:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Personal Health Train on FHIR \citep{choudhury2020personal}
+    \item
+      CODA project \citep{mullie2023coda}. Comparing OMOP and FHIR, the
+      latter has been found to support more granular mappings required
+      for analytics and was therefore chosen as the standard for the
+      CODA project.
+    \item
+      GenoMed4All, in evalution phase for -omis
+      \citep{cremonesi2023need}
+    \end{itemize}
+  \item
+    hybrid/both:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      KETOS OMOP-FHIR \citep{gruendner2019ketos}
+    \end{itemize}
+  \end{itemize}
 \item
-  GenoMed4All, in evalution phase for -omis \citep{cremonesi2023need}
+  Explain our own choice for FHIR
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We want as wide a scope as possible, e.g.~administrative data or
+    claims data can't fit in OMOP and there are use cases
+  \item
+    Principle of FHIR Profiles can be tied to principle of late binding:
+    allow ingest of widely different sources, and gradually but more
+    constraints and validations as you move closer to a specific use
+    case
+  \item
+    If machine learning is the primary objective for secondary use, we
+    want to be able to cast a wider net of relevant data, rather than
+    having very detailed data
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
+
+\section{Health data standards in low- and middle income
+countries}\label{health-data-standards-in-low--and-middle-income-countries}
+
+The OpenHIE framework \citep{openhie} has been adopted by many
+sub-Saharan African countries \citep{mamuye2022health} as the
+architectural blueprint for implementing nation-wide health information
+exchanges (HIE), including Nigeria \citep{dalhatu2023paper}, Kenya
+\citep{thaiya2021adoption} and Tanzania \citep{nsaghurwe2021one}.
+Conceptually, the OpenHIE framework constitutes a framework for an open
+digital platform, that mostly focuses on transactional exchange of data,
+that is, primary data sharing. Given the need to also enable secondary
+data sharing for academic research, real-world evidence studies etc.,
+African countries have, as a matter of course, extended the framework to
+include ``data \& analytics services'' as an additional domain.
+
+Based on our direct involvement in implementing and designing health
+data platforms in these countries, we observed that FHIR was practically
+the only viable solution. Although FHIR is originally intened for
+creating a longitudinal database, in fact open source FHIR
+implementations such as the HAPI FHIR server are the most widely used
+standards for realizing the so-called Shared Health Record within the
+OpenHIE architecture. not intended for
+
+In relation to the conventional perspective on `openness', which
+originally focused on open source and open standards as discussed above,
+has been superseded by ``\ldots{} conflicts about privacy, economic
+value extraction, the emergence of artificial intelligence, and the
+destabilizing effects of dominant platforms on (democratic) societies.
+Instead of access to information, the control of personal data has
+emerged in the age of platforms as the critical contention''
+\citep{keller2021paradox}. These conflicts are particularly salient in
+the healthcare domain, where people are generally willing to share their
+health data to receive the best care (primary use), while the attitude
+towards secondary use of health data varies greatly depending on the
+type and context \citep{cascini2024health}. Case studies on digital
+platforms in healthcare point to an emerging pattern where the focus
+shifts from the digital platform with its defining software and hardware
+components, to the data as the primary object of interest in and of
+itself \citep{ozalp2022digital, alaimo2022organizations}. This
+observation ties into with the proposed research agenda by de Reuver et
+al.~to consider data platforms as a phenomenon distinct from digital
+platforms \citep{dereuver2018digital, dereuver2022openness}.
+
+Essentially, ``\ldots{} this paradox is that openness of data is both a
+challenge to and an enabler of concentrations of power. The ideas of
+open access and free reuse of information goods continue to be some of
+the most powerful challenges to the exclusive control by corporations
+and states over information goods. Yet making such resources open also
+exposes them to the imbalances of power that shape these societies --
+and in the worst cases serves to strengthen these imbalances.'' Put
+differently, having open standards is no guarantee that we will be able
+to breakthrough the current status quo with huge asymmetries in terms of
+bargaining power, access control and development resources related to
+health data sharing. We posit that having open data standards is a
+necessary condition in improving the current state of affairs, yet it is
+not a sufficient condition.
+
+The shift in perspective from digital platforms supporting primary data
+sharing toward data platforms supporting secondary data sharing is a
+contentious issue both in high income countries, with for example the
+ongoing efforts to establish a European Health Data Space
+\citep{otto2022designing}, and low- and middle income countries that are
+aiming to deploy nationwide health information exchanges to support
+primary and secondary data use at once \citep{mamuye2022health}. A
+better understanding of openness is particularly relevant if we are to
+realize a solidarity-based approach to health data sharing that i) gives
+people a greater control over their data as active decision makers; ii)
+ensures that the value of data is harnessed for public good; and iii)
+moves society towards equity and justice by counteracting dynamics of
+data extraction
+\citep{kickbusch2021lancet, prainsack2022data, prainsack2023beyond}.
+
+\section{Conclusion and outlook}\label{conclusion-and-outlook}
+
+\begin{itemize}
+\tightlist
 \item
-  PLUGIN
+  We underline the need for open data standards as a necessary condition
+  to achieve interoperability
+\item
+  It is not a sufficient condition
 \end{itemize}
 
 
