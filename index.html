@@ -170,34 +170,31 @@ div.csl-indent {
 </section>
 <section id="standarization-of-health-data-for-federated-learning" class="level2">
 <h2 class="anchored" data-anchor-id="standarization-of-health-data-for-federated-learning">Standarization of health data for federated learning</h2>
+<p>The current fragmentation in health data is one of the major barriers towards leveraging the potential medical data for machine learning (ML). Without access to sufficient data, ML will be prevented from reaching its full potential and, ultimately, from making the transition from research to clinical practice. Data like this is hard to obtain, because health data is highly sensitive and its usage is tightly regulated.</p>
+<p>Federated learning (FL) is a learning paradigm that aims to address these issues of data governance and privacy by training algorithms collaboratively without exchanging the data itself <span class="citation" data-cites="rieke2020future teo2024federated">(<a href="#ref-rieke2020future" role="doc-biblioref">Rieke et al., 2020</a>; <a href="#ref-teo2024federated" role="doc-biblioref">Teo et al., 2024</a>)</span>. Based on ongoing work with the PLUGIN healthcare consortium (<a href="https://plugin.healthcare">https://plugin.healthcare</a>, in Dutch) we have detailed an architecture for FL for secondary use. To this purpose, the the National Health Data Infrastructure agreements for research, policy and innovation for the Dutch healthcare sector which have been adopted at the beginning of 2024, has been taken as the starting point <span class="citation" data-cites="healthri2024agreements">(<a href="#ref-healthri2024agreements" role="doc-biblioref">Health-RI, 2024</a>)</span>. <a href="#fig-healthri-architecture" class="quarto-xref">Figure&nbsp;1</a> shows a high level overview of the platform, which comprises three areas (multiple use, applications and generic features) and a total of 26 functional components (for details please refer to <span class="citation" data-cites="healthri2024agreements">(<a href="#ref-healthri2024agreements" role="doc-biblioref">Health-RI, 2024</a>)</span>).</p>
+<div id="fig-healthri-architecture" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-healthri-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Reference architecture for the Dutch health data infrastructure for research and innovation <span class="citation" data-cites="healthri2024agreements">(<a href="#ref-healthri2024agreements" role="doc-biblioref">Health-RI, 2024</a>)</span>
+</figcaption>
+<div aria-describedby="fig-healthri-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="health-ri-architecture.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+<p>The principle of FL has been actively researched and developed within the Dutch healthcare community. The first proof-of-concept of the so-called Personal Health Train <span class="citation" data-cites="vansoest2018using">(<a href="#ref-vansoest2018using" role="doc-biblioref"><strong>vansoest2018using?</strong></a>)</span> ultimately led to the open source vantage6 platform <span class="citation" data-cites="smits2022improved">(<a href="#ref-smits2022improved" role="doc-biblioref"><strong>smits2022improved?</strong></a>)</span>. One of the prerequisites of this architecture is that organizations that participate in a federation of ‘data stations’ use the same common data model (CDM) to make the data Findable, Accessible, Interoperable and Resusable. These FAIR data stations comprise components 7, 8 and 9 in <a href="#fig-healthri-architecture" class="quarto-xref">Figure&nbsp;1</a>, i.e.&nbsp;the data, metadata and APIs, respectively, through which this the data station can be accessed and used. FHIR has been chosen as the common data model quite early in the development because of its practicality, provenance of RESTful APIs out of the box, support of many healthcare terminologies and flexibility through the profiling mechanims <span class="citation" data-cites="choudhury2020personal">(<a href="#ref-choudhury2020personal" role="doc-biblioref">Choudhury et al., 2020</a>)</span>.</p>
+<p>This solution design has gained traction since then. The CODA platform, which aims to implement a FL infrastructure in Canada, compared OMOP and FHIR and chose the latter as it has been found to support more granular mappings required for analytics <span class="citation" data-cites="mullie2023coda">(<a href="#ref-mullie2023coda" role="doc-biblioref">Mullie et al., 2023</a>)</span>. Given that conceptually OMOP can be viewed as a strict subset of FHIR, hybrid solutions using OMOP and FHIR combined have also been reported, such as the German KETOS platform <span class="citation" data-cites="gruendner2019ketos">(<a href="#ref-gruendner2019ketos" role="doc-biblioref">Gruendner et al., 2019</a>)</span> and the preliminary findings from the European GenoMed4All project which aims to connect clinical and -omics data <span class="citation" data-cites="cremonesi2023need">(<a href="#ref-cremonesi2023need" role="doc-biblioref">Cremonesi et al., 2023</a>)</span>.</p>
+<p>Using FHIR as the CDM in a FL architecture for persistent storage for longitudinal analysis may strike many as counterintuitive. The fact that some recent studies the practical designs of such platforms only mention OMOP only attests to this misconception <span class="citation" data-cites="wong2022applying">(<a href="#ref-wong2022applying" role="doc-biblioref"><strong>wong2022applying?</strong></a>)</span>.</p>
 <ul>
-<li>Based on ongoing work witht the PLUGIN Healthcare consortium (https://plugin.healthcare)</li>
-<li>The future of secondary health data sharing is federated <span class="citation" data-cites="rieke2020future">(<a href="#ref-rieke2020future" role="doc-biblioref">Rieke et al., 2020</a>)</span></li>
-<li>As part of our work we have done a search for federated data sharing projects/solution. Disclaimer, this is not a systematic review, but intended to illustrate current approaches that are taken</li>
-<li>We observe that FHIR and OMOP are the two standards that are used. Briefly explain each of the projects that we have found
-<ul>
-<li>OMOP:
+<li><p>we don’t say you can’t use OMOP for data stations, in fact the following projects do that:</p>
 <ul>
 <li>OHDSI analytics <span class="citation" data-cites="khalid2021standardized">(<a href="#ref-khalid2021standardized" role="doc-biblioref">Khalid et al., 2021</a>)</span></li>
+<li>… (look for more)</li>
 </ul></li>
-<li>FHIR:
-<ul>
-<li>Personal Health Train on FHIR <span class="citation" data-cites="choudhury2020personal">(<a href="#ref-choudhury2020personal" role="doc-biblioref">Choudhury et al., 2020</a>)</span></li>
-<li>CODA project <span class="citation" data-cites="mullie2023coda">(<a href="#ref-mullie2023coda" role="doc-biblioref">Mullie et al., 2023</a>)</span>. Comparing OMOP and FHIR, the latter has been found to support more granular mappings required for analytics and was therefore chosen as the standard for the CODA project.</li>
-<li>GenoMed4All, in evalution phase for -omis <span class="citation" data-cites="cremonesi2023need">(<a href="#ref-cremonesi2023need" role="doc-biblioref">Cremonesi et al., 2023</a>)</span></li>
-</ul></li>
-<li>hybrid/both:
-<ul>
-<li>KETOS OMOP-FHIR <span class="citation" data-cites="gruendner2019ketos">(<a href="#ref-gruendner2019ketos" role="doc-biblioref">Gruendner et al., 2019</a>)</span></li>
-</ul></li>
-</ul></li>
-<li>Explain our own choice for FHIR
-<ul>
-<li>We want as wide a scope as possible, e.g.&nbsp;administrative data or claims data can’t fit in OMOP and there are use cases</li>
-<li>Principle of FHIR Profiles can be tied to principle of late binding: allow ingest of widely different sources, and gradually but more constraints and validations as you move closer to a specific use case</li>
-<li>If machine learning is the primary objective for secondary use, we want to be able to cast a wider net of relevant data, rather than having very detailed data</li>
-<li>…</li>
-</ul></li>
+<li><p>this distinction become irrelevant as OMOP will have FHIR interfaces, see https://omoponfhir.org</p></li>
+<li><p>however, FHIR is the CDM we choose because it is a superset, allowing for example also administrative and claims data or claims data can’t fit in OMOP</p></li>
+<li><p>Principle of FHIR Profiles can be tied to principle of late binding: allow ingest of widely different sources, and gradually but more constraints and validations as you move closer to a specific use case. If machine learning is the primary objective for secondary use, we want to be able to cast a wider net of relevant data, rather than having very detailed data</p></li>
+<li><p>Add more arguments here …</p></li>
 </ul>
 </section>
 <section id="health-data-standards-in-low--and-middle-income-countries" class="level2">
@@ -213,6 +210,7 @@ div.csl-indent {
 <ul>
 <li>We underline the need for open data standards as a necessary condition to achieve interoperability</li>
 <li>It is not a sufficient condition</li>
+<li>MPC as next step up from FL</li>
 </ul>
 </section>
 <section id="bibliography" class="level1 unnumbered">
@@ -254,6 +252,9 @@ Gruendner, J., Schwachhofer, T., Sippl, P., Wolf, N., Erpenbeck, M., Gulden, C.,
 </div>
 <div id="ref-hcx" class="csl-entry" role="listitem">
 <span>HCX Protocol</span> v0.9, 2023.
+</div>
+<div id="ref-healthri2024agreements" class="csl-entry" role="listitem">
+Health-RI, 2024. Agreements on the <span>National Health Data Infrastructure</span> for <span>Research</span>, <span>Policy</span> and <span>Innovation</span> - <span class="nocase">Health-RI Nationale Gezondheidsdata-infrastructuur</span> - <span>Confluence</span>.
 </div>
 <div id="ref-jones2021landscape" class="csl-entry" role="listitem">
 Jones, J., Gottlieb, D., Mandel, J.C., Ignatov, V., Ellis, A., Kubick, W., Mandl, K.D., 2021. A landscape survey of planned <span>SMART</span>/<span>HL7</span> bulk <span>FHIR</span> data access <span>API</span> implementations and tools. Journal of the American Medical Informatics Association 28, 1284–1287. <a href="https://doi.org/10.1093/jamia/ocab028">https://doi.org/10.1093/jamia/ocab028</a>
@@ -299,6 +300,9 @@ Reynolds, C.J., Wyatt, J.C., 2011. Open <span>Source</span>, <span>Open Standard
 </div>
 <div id="ref-rieke2020future" class="csl-entry" role="listitem">
 Rieke, N., Hancox, J., Li, W., Milletarì, F., Roth, H.R., Albarqouni, S., Bakas, S., Galtier, M.N., Landman, B.A., Maier-Hein, K., Ourselin, S., Sheller, M., Summers, R.M., Trask, A., Xu, D., Baust, M., Cardoso, M.J., 2020. The future of digital health with federated learning. npj Digital Medicine 3, 1–7. <a href="https://doi.org/10.1038/s41746-020-00323-1">https://doi.org/10.1038/s41746-020-00323-1</a>
+</div>
+<div id="ref-teo2024federated" class="csl-entry" role="listitem">
+Teo, Z.L., Jin, L., Liu, N., Li, S., Miao, D., Zhang, X., Ng, W.Y., Tan, T.F., Lee, D.M., Chua, K.J., Heng, J., Liu, Y., Goh, R.S.M., Ting, D.S.W., 2024. Federated machine learning in healthcare: <span>A</span> systematic review on clinical applications and technical architecture. Cell Reports Medicine 5, 101419. <a href="https://doi.org/10.1016/j.xcrm.2024.101419">https://doi.org/10.1016/j.xcrm.2024.101419</a>
 </div>
 <div id="ref-thaiya2021adoption" class="csl-entry" role="listitem">
 Thaiya, M.S., Julia, K., Joram, M., Benard, M., Nambiro, D.A., 2021. Adoption of <span>ICT</span> to <span>Enhance Access</span> to <span>Healthcare</span> in <span>Kenya</span>.

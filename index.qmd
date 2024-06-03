@@ -73,33 +73,30 @@ In comparison, the ecosystem of OMOP and OpenEHR is have not yet profited from e
 More than a decade later, we observe that only a very small fraction of health IT systems are based on open source, the majority of which are used in LMICs which we will discuss later [@digitalpublicgoods].
 
 
-
-
-
-
-
-
 ## Standarization of health data for federated learning
 
+The current fragmentation in health data is one of the major barriers towards leveraging the potential medical data for machine learning (ML). Without access to sufficient data, ML will be prevented from reaching its full potential and, ultimately, from making the transition from research to clinical practice. Data like this is hard to obtain, because health data is highly sensitive and its usage is tightly regulated.
 
-- Based on ongoing work witht the PLUGIN Healthcare consortium (https://plugin.healthcare)
-- The future of secondary health data sharing is federated [@rieke2020future]
-- As part of our work we have done a search for federated data sharing projects/solution. Disclaimer, this is not a systematic review, but intended to illustrate current approaches that are taken
-- We observe that FHIR and OMOP are the two standards that are used. Briefly explain each of the projects that we have found
-  - OMOP:
-    - OHDSI analytics [@khalid2021standardized]
-  - FHIR:
-    - Personal Health Train on FHIR [@choudhury2020personal]
-    - CODA project [@mullie2023coda]. Comparing OMOP and FHIR, the latter has been found to support more granular mappings required for analytics and was therefore chosen as the standard for the CODA project.
-    - GenoMed4All, in evalution phase for -omis [@cremonesi2023need]
-  - hybrid/both:
-    - KETOS OMOP-FHIR [@gruendner2019ketos]
+Federated learning (FL) is a learning paradigm that aims to address these issues of data governance and privacy by training algorithms collaboratively without exchanging the data itself [@rieke2020future;@teo2024federated]. Based on ongoing work with the PLUGIN healthcare consortium ([https://plugin.healthcare](https://plugin.healthcare), in Dutch) we have detailed an architecture for FL for secondary use. To this purpose, the the National Health Data Infrastructure agreements for research, policy and innovation for the Dutch healthcare sector which have been adopted at the beginning of 2024, has been taken as the starting point [@healthri2024agreements]. @fig-healthri-architecture shows a high level overview of the platform, which comprises three areas (multiple use, applications and generic features) and a total of 26 functional components (for details please refer to [@healthri2024agreements]).
 
-- Explain our own choice for FHIR
-  - We want as wide a scope as possible, e.g. administrative data or claims data can't fit in OMOP and there are use cases
-  - Principle of FHIR Profiles can be tied to principle of late binding: allow ingest of widely different sources, and gradually but more constraints and validations as you move closer to a specific use case
-  - If machine learning is the primary objective for secondary use, we want to be able to cast a wider net of relevant data, rather than having very detailed data
-  - ...
+![Reference architecture for the Dutch health data infrastructure for research and innovation [@healthri2024agreements]](health-ri-architecture.png){#fig-healthri-architecture}
+
+The principle of FL has been actively researched and developed within the Dutch healthcare community. The first proof-of-concept of the so-called Personal Health Train [@vansoest2018using] ultimately led to the open source vantage6 platform [@smits2022improved]. One of the prerequisites of this architecture is that organizations that participate in a federation of 'data stations' use the same common data model (CDM) to make the data Findable, Accessible, Interoperable and Resusable. These FAIR data stations comprise components 7, 8 and 9 in @fig-healthri-architecture, i.e. the data, metadata and APIs, respectively, through which this the data station can be accessed and used. FHIR has been chosen as the common data model quite early in the development because of its practicality, provenance of RESTful APIs out of the box, support of many healthcare terminologies and flexibility through the profiling mechanims [@choudhury2020personal].
+
+This solution design has gained traction since then. The CODA platform, which aims to implement a FL infrastructure in Canada, compared OMOP and FHIR and chose the latter as it has been found to support more granular mappings required for analytics [@mullie2023coda]. Given that conceptually OMOP can be viewed as a strict subset of FHIR, hybrid solutions using OMOP and FHIR combined have also been reported, such as the German KETOS platform [@gruendner2019ketos] and the preliminary findings from the European GenoMed4All project which aims to connect clinical and -omics data [@cremonesi2023need].   
+
+Using FHIR as the CDM in a FL architecture for persistent storage for longitudinal analysis may strike many as counterintuitive. The fact that some recent studies the practical designs of such platforms only mention OMOP only attests to this misconception [@wong2022applying].
+
+- we don't say you can't use OMOP for data stations, in fact the following projects do that: 
+  - OHDSI analytics [@khalid2021standardized]
+  - ... (look for more)
+
+- this distinction become irrelevant as OMOP will have FHIR interfaces, see https://omoponfhir.org
+- however, FHIR is the CDM we choose because it is a superset, allowing for example also administrative and claims data or claims data can't fit in OMOP
+- Principle of FHIR Profiles can be tied to principle of late binding: allow ingest of widely different sources, and gradually but more constraints and validations as you move closer to a specific use case. If machine learning is the primary objective for secondary use, we want to be able to cast a wider net of relevant data, rather than having very detailed data
+
+- Add more arguments here ...
+
 
 
 
@@ -121,6 +118,7 @@ The shift in perspective from digital platforms supporting primary data sharing 
 
 - We underline the need for open data standards as a necessary condition to achieve interoperability
 - It is not a sufficient condition
+- MPC as next step up from FL
 
 
 
