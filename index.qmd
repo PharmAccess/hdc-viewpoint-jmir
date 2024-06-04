@@ -33,6 +33,16 @@ author:
       - name: Maastricht University
         city: Maastricht
         country: the Netherlands
+  - name: Bart-Jan Verhoeff
+    affiliations:
+      - name: Expertisecentrum Zorgalgoritmen
+        city: Utrecht
+        country: the Netherlands
+  - name: XXX
+    affiliations:
+      - name: PharmAccess Foundation
+        city: Amsterdam
+        country: the Netherlands
   - name: Andre Dekker
     affiliations:
       - name: Maastricht University
