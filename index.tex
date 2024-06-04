@@ -332,14 +332,15 @@ thousand results, and ``OpenEHR'' yiels 400 results.
   implementations.
 \end{itemize}
 
-Hence, we stress that beyond the evaluating the intrinic structure of an
-open standard (which one is most suitable for a given domain) and the
-community that supports the standard, we need to take into account the
-wider ecosystem of open source implementations, complementary components
-etc. From this wider perspective on the whole ecosystem around a
-standard, FHIR stands out as having the diverse and rich ecosystem
-because it has been mandated in certain jurisdictions. This is relevant
-when comparing these standards in real-world implementations.
+Hence, we stress that beyond the evaluating the instrinic structure of
+an open standard and the community that supports the standard, we need
+to take into account the wider ecosystem of open source implementations,
+complementary components etc. From this wider perspective on the whole
+ecosystem around a standard, FHIR stands out as having the diverse and
+rich ecosystem because it has been mandated in certain jurisdictions.
+This is relevant when comparing these standards in real-world
+implementations. We now turn to two specific use cases c.q. contexts
+where these considerations are at play.
 
 \section{Standarization of health data for federated
 learning}\label{standarization-of-health-data-for-federated-learning}
@@ -356,11 +357,11 @@ these issues of data governance and privacy by training algorithms
 collaboratively without exchanging the data itself
 \citep{rieke2020future, teo2024federated}. Based on ongoing work with
 the PLUGIN healthcare consortium (\url{https://plugin.healthcare}, in
-Dutch) we have detailed an architecture for FL for secondary use. To
-this purpose, the the National Health Data Infrastructure agreements for
-research, policy and innovation for the Dutch healthcare sector which
-have been adopted at the beginning of 2024, has been taken as the
-starting point \citep{healthri2024agreements}.
+Dutch) we have detailed an architecture for FL for secondary use of
+health data in the Netherlands. Starting point for this implementation
+are the National Health Data Infrastructure agreements for research,
+policy and innovation for the Dutch healthcare sector, which have been
+adopted at the beginning of 2024 \citep{healthri2024agreements}.
 Figure~\ref{fig-healthri-architecture} shows a high level overview of
 the platform, which comprises three areas (multiple use, applications
 and generic features) and a total of 26 functional components (for
@@ -386,8 +387,8 @@ so-called Personal Health Train \citep{vansoest2018using} ultimately led
 to the open source vantage6 platform \citep{smits2022improved}. One of
 the prerequisites of this architecture is that organizations that
 participate in a federation of `data stations' use the same common data
-model (CDM) to make the data Findable, Accessible, Interoperable and
-Resusable. These FAIR data stations comprise components 7, 8 and 9 in
+model to make the data Findable, Accessible, Interoperable and Resusable
+(FAIR). These FAIR data stations comprise components 7, 8 and 9 in
 Figure~\ref{fig-healthri-architecture}, i.e.~the data, metadata and
 APIs, respectively, through which this the data station can be accessed
 and used. FHIR has been chosen as the common data model quite early in
@@ -396,39 +397,35 @@ out of the box, support of many healthcare terminologies and flexibility
 through the profiling mechanims \citep{choudhury2020personal}.
 
 This solution design has gained traction since then. The CODA platform,
-which aims to implement a FL infrastructure in Canada, compared OMOP and
-FHIR and chose the latter as it has been found to support more granular
-mappings required for analytics \citep{mullie2023coda}. Given that
-conceptually OMOP can be viewed as a strict subset of FHIR, hybrid
-solutions using OMOP and FHIR combined have also been reported, such as
-the German KETOS platform \citep{gruendner2019ketos} and the preliminary
-findings from the European GenoMed4All project which aims to connect
-clinical and -omics data \citep{cremonesi2023need}.
+which aims to implement a similar FL infrastructure in Canada, compared
+OMOP and FHIR and chose the latter as it has been found to support more
+granular mappings required for analytics \citep{mullie2023coda}.
 
-Using FHIR as the CDM in a FL architecture for persistent storage for
-longitudinal analysis may strike many as counterintuitive. The fact that
-some recent studies the practical designs of such platforms only mention
-OMOP only attests to this misconception \citep{wong2022applying}.
+Given that conceptually OMOP can be viewed as a strict subset of FHIR,
+hybrid solutions using OMOP and FHIR combined have also been reported,
+such as the German KETOS platform \citep{gruendner2019ketos}, and the
+preliminary findings from the European GenoMed4All project which aims to
+connect clinical and -omics data \citep{cremonesi2023need}. A
+collaboration of 10 university hospitals in Germany have shown that
+standardized ETL-processing from FHIR into OMOP can achieve 99\%
+conformance \citep{peng2023etlprocess}.
+
+Using the FHIR standard for persistent storage for longitudinal data in
+such FL architectures may strike many as counterintuitive. Alternative
+approaches indeed take OMOP as the the common data model more in line
+with the proposal of Tsafnat et al.~Reports of real-world
+implementations based on the OHDSI-OMOP stack include a global
+infrastructure with 22 centres for COVID19 prediction
+models\citep{khalid2021standardized}, FeederNet in South Korea with 57
+participating hospitals \citep{lee2022feedernet}, Dutch multi-cohor
+dementia research with 9 centres \citep{mateus2024data}, the European
+severe heterogeneous asthma research collaboration
+\citep{kroes2022blueprint}.
 
 \begin{itemize}
 \item
-  we don't say you can't use OMOP for data stations, in fact the
-  following projects do that:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    OHDSI analytics \citep{khalid2021standardized}
-  \item
-    \ldots{} (look for more)
-  \end{itemize}
-\item
   this distinction become irrelevant as OMOP will have FHIR interfaces,
   see https://omoponfhir.org
-\item
-  however, FHIR is the CDM we choose because it is a superset, allowing
-  for example also administrative and claims data or claims data can't
-  fit in OMOP
 \item
   Principle of FHIR Profiles can be tied to principle of late binding:
   allow ingest of widely different sources, and gradually but more
@@ -438,6 +435,60 @@ OMOP only attests to this misconception \citep{wong2022applying}.
   having very detailed data
 \item
   Add more arguments here \ldots{}
+\end{itemize}
+
+To achieve flexibility and consistency in the information standard, we
+combine the principle of late binding with the mechanism of FHIR
+profiling. Late binding in data warehousing is a design philosophy where
+data transformation and schema enforcement are deferred until as late as
+possible in the data processing pipeline, sometime even until query
+time. This approach contrasts with early binding, where data is
+transformed and structured as it is ingested into the data warehouse.
+Put differently, we defer from transforming data at the point of
+ingestion (ETL - Extract, Transform, Load), but rather apply
+transformations when the data is accessed for analysis (ELT - Extract,
+Load, Transform).
+
+FHIR Profiles are a key mechanism for defining, constraining, and
+extending FHIR resources to meet specific use cases and requirements in
+healthcare data exchange. We FHIR Profiles to create increasingly more
+strict standardized data models to ensure consistent and accurate data
+representation across the various use-cases. Combining this mechanism
+with late binding, we use a solution pattern whereby the zones of the
+lakehouse (more on that later) correspond to FHIR profiles with
+increasingly more specific constraints. This principle is visualized as
+concentric circles (see below).
+
+\begin{figure}[H]
+
+{\centering \includegraphics{late-binding.png}
+
+}
+
+\caption{Principle of late binding with FHIR profiling mechanism}
+
+\end{figure}%
+
+The advantages of this design is that it allows for greater flexibility.
+During the initial ingest of the data, we only require the data to
+conform to the minimal syntactic standard defined by the base FHIR
+version (R4 in the diagram). As the data is processed, more strict
+checks and constrains are applied, whereby ultimately different profiles
+can co-exists next to one another (the two most inner circles), within a
+larger circle with fewer strictions.
+
+The main limitations are:
+
+\begin{itemize}
+\tightlist
+\item
+  When upgrading the primary FHIR version, for example R5, the whole
+  pipeline needs to be reimplemented. However, we expect that the
+  development time required to upgrade FHIR versions is significantly
+  less than the initial migration to FHIR.
+\item
+  This approach does not support the extension mechanism of FHIR, so we
+  need to be cautious if we decide to use that.
 \end{itemize}
 
 \section{Health data standards in low- and middle income
