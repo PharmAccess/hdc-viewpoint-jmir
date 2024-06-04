@@ -231,12 +231,12 @@ real-world implementations. This viewpoint provides a critical
 reflection on the their proposed framework in three parts. First, we
 reflect on salient differences between the three open standards from the
 perspective of the notion of openness of digital platforms
-\citep{dereuver2018digital}, data platforms \citep{dereuver2022openness}
-and the paradox of open \citep{keller2021paradox}. Subsequently, we
-present our findings in designing and implementing health data platforms
-in two specific contexts, namely i) platforms for federated learning on
-shared health data; and ii) health data platforms for low and middle
-income countries (LMICs). We conclude with \ldots{}
+\citep{dereuver2018digital} and the paradox of open
+\citep{keller2021paradox}. Subsequently, we present our findings in
+designing and implementing health data platforms in two specific
+contexts, namely i) platforms for federated learning on shared health
+data; and ii) health data platforms for low and middle income countries
+(LMICs). We conclude with \ldots{}
 
 \section{The paradox of open for health data
 standards}\label{the-paradox-of-open-for-health-data-standards}
@@ -289,20 +289,19 @@ Educational Resources (OER), and Open Government data. A canonical
 example in the birth of the GSM standard, which was mandated by European
 legislation.\footnote{See
   \url{https://en.wikipedia.org/wiki/GSM\#Initial_European_development}
-  for details.} Reflecting on this perspective on openness, we observer
-a salient difference between FHIR vis-a-vis OpenEHR and OMOP, namely
-that the former is the only one that has been mandated (or at least
-strongly recommended) in some jurisdictions. In the US, the Office of
-the National Coordinator for Health Information Technology (ONC) and the
+  for details.} Reflecting on this perspective on openness, we observe a
+salient difference between FHIR vis-a-vis OpenEHR and OMOP, namely that
+the former is the only one that has been mandated (or at least strongly
+recommended) in some jurisdictions. In the US, the Office of the
+National Coordinator for Health Information Technology (ONC) and the
 Centers for Medicare and Medicaid Services (CMS) has introduced a steady
 stream of new regulations, criteria, and deadlines in Health IT that has
 resulted in significant adoption of FHIR \citep{firely2023fhir}. In
 India, the open Health Claims Exchange protocol specification - which is
 based on FHIR - has been mandated by the Indian government as the
-standard for e-claims handling
-\citep{nationalhealthauthority2020national, hcx}. The African Union
-recommends all new implementations and digital health system
-improvements use FHIR as the primary mechanism for data exchange
+standard for e-claims handling \citep{india2020national, hcx}. The
+African Union recommends all new implementations and digital health
+system improvements use FHIR as the primary mechanism for data exchange
 \citep{tilahun2023african}, but doesn't say anything about the use of,
 for example, OpenEHR for administrative point-of-service systems.
 
@@ -394,25 +393,18 @@ APIs, respectively, through which this the data station can be accessed
 and used. FHIR has been chosen as the common data model quite early in
 the development because of its practicality, provenance of RESTful APIs
 out of the box, support of many healthcare terminologies and flexibility
-through the profiling mechanims \citep{choudhury2020personal}.
-
-This solution design has gained traction since then. The CODA platform,
-which aims to implement a similar FL infrastructure in Canada, compared
-OMOP and FHIR and chose the latter as it has been found to support more
-granular mappings required for analytics \citep{mullie2023coda}.
-
-Given that conceptually OMOP can be viewed as a strict subset of FHIR,
-hybrid solutions using OMOP and FHIR combined have also been reported,
-such as the German KETOS platform \citep{gruendner2019ketos}, and the
-preliminary findings from the European GenoMed4All project which aims to
-connect clinical and -omics data \citep{cremonesi2023need}. A
-collaboration of 10 university hospitals in Germany have shown that
-standardized ETL-processing from FHIR into OMOP can achieve 99\%
-conformance \citep{peng2023etlprocess}.
+through the profiling mechanims \citep{choudhury2020personal}. This
+solution design has gained traction since then. The CODA platform, which
+aims to implement a similar FL infrastructure in Canada, compared OMOP
+and FHIR and chose the latter as it has been found to support more
+granular mappings required for analytics \citep{mullie2023coda}. The
+fair4health project has implemented also based on FHIR, but using a
+different open source framework for federated learning
+\citep{sinacoi2024privacypreserving}.
 
 Using the FHIR standard for persistent storage for longitudinal data in
-such FL architectures may strike many as counterintuitive. Alternative
-approaches indeed take OMOP as the the common data model more in line
+such FL architectures may strike many as counterintuitive. Another
+common approache takes OMOP as the the common data model more in line
 with the proposal of Tsafnat et al.~Reports of real-world
 implementations based on the OHDSI-OMOP stack include a global
 infrastructure with 22 centres for COVID19 prediction
@@ -422,32 +414,39 @@ dementia research with 9 centres \citep{mateus2024data}, the European
 severe heterogeneous asthma research collaboration
 \citep{kroes2022blueprint}.
 
-\begin{itemize}
-\item
-  this distinction become irrelevant as OMOP will have FHIR interfaces,
-  see https://omoponfhir.org
-\item
-  Principle of FHIR Profiles can be tied to principle of late binding:
-  allow ingest of widely different sources, and gradually but more
-  constraints and validations as you move closer to a specific use case.
-  If machine learning is the primary objective for secondary use, we
-  want to be able to cast a wider net of relevant data, rather than
-  having very detailed data
-\item
-  Add more arguments here \ldots{}
-\end{itemize}
+Given that conceptually OMOP can be viewed as a strict subset of FHIR,
+hybrid solutions using OMOP and FHIR combined have also been reported,
+such as the German KETOS platform \citep{gruendner2019ketos}, and the
+preliminary findings from the European GenoMed4All project which aims to
+connect clinical and -omics data \citep{cremonesi2023need}. A
+collaboration of 10 university hospitals in Germany have shown that
+standardized ETL-processing from FHIR into OMOP can achieve 99\%
+conformance \citep{peng2023etlprocess}, which confirms the feasiblity of
+the solution pattern where FHIR acts as an intermediate sharing standard
+through which data from (legacy) systems are extracted and made
+available for reuse in a common data model.
 
-To achieve flexibility and consistency in the information standard, we
-combine the principle of late binding with the mechanism of FHIR
-profiling. Late binding in data warehousing is a design philosophy where
-data transformation and schema enforcement are deferred until as late as
-possible in the data processing pipeline, sometime even until query
-time. This approach contrasts with early binding, where data is
-transformed and structured as it is ingested into the data warehouse.
-Put differently, we defer from transforming data at the point of
-ingestion (ETL - Extract, Transform, Load), but rather apply
-transformations when the data is accessed for analysis (ELT - Extract,
-Load, Transform).
+One could argue that the distiction between FHIR amd OMOP becomes less
+relevant if data can be effectively stored in either standard. We are
+hopeful that initiatives like https://omoponfhir.org indeed will foster
+convergence rather than collision between these two standards. In the
+case of PLUGIN, however, we had other considerations to opt for FHIR.
+
+First, we find that the mechanism of FHIR Profiles can be tied to
+concept of late binding commonly applied in data lake/warehouse
+architectures: allow ingest of widely different sources, and gradually
+but more constraints and validations as you move closer to a specific
+use case. If machine learning is the primary objective for secondary
+use, we want to be able to cast a wider net of relevant data, rather
+than having very detailed data. Late binding in data warehousing is a
+design philosophy where data transformation and schema enforcement are
+deferred until as late as possible in the data processing pipeline,
+sometime even until query time. This approach contrasts with early
+binding, where data is transformed and structured as it is ingested into
+the data warehouse. Put differently, we defer from transforming data at
+the point of ingestion (ETL - Extract, Transform, Load), but rather
+apply transformations when the data is accessed for analysis (ELT -
+Extract, Load, Transform).
 
 FHIR Profiles are a key mechanism for defining, constraining, and
 extending FHIR resources to meet specific use cases and requirements in
@@ -475,20 +474,20 @@ conform to the minimal syntactic standard defined by the base FHIR
 version (R4 in the diagram). As the data is processed, more strict
 checks and constrains are applied, whereby ultimately different profiles
 can co-exists next to one another (the two most inner circles), within a
-larger circle with fewer strictions.
+larger circle with fewer strictions. This approach does not support the
+extension mechanism of FHIR, so we need to be cautious if we decide to
+use that.
 
-The main limitations are:
+The main disadvantage in using FHIR in this way pertains to the need for
+upgrading the whole ELT pipeline when upgrading to a new primary FHIR
+version, for example R5. However, we expect that the development time
+required to upgrade FHIR versions is significantly less than the initial
+migration to FHIR.
 
 \begin{itemize}
 \tightlist
 \item
-  When upgrading the primary FHIR version, for example R5, the whole
-  pipeline needs to be reimplemented. However, we expect that the
-  development time required to upgrade FHIR versions is significantly
-  less than the initial migration to FHIR.
-\item
-  This approach does not support the extension mechanism of FHIR, so we
-  need to be cautious if we decide to use that.
+  Add more arguments here \ldots{[}Melle{]}
 \end{itemize}
 
 \section{Health data standards in low- and middle income
@@ -496,12 +495,12 @@ countries}\label{health-data-standards-in-low--and-middle-income-countries}
 
 It is a widely held belief that digital technologies have an important
 role to play in strengthening health systems in LMICs. Yet, also here
-the current fragmentation of health data stand in the way of scaling up
+the current fragmentation of health data stands in the way of scaling up
 digital health programme beyond project-centric, vertical solutions into
 sustainable health information exchanges. And also here, many have
 called to converge towards open standards \citep{mehl2023fullstac}.
 Based on our direct involvement in implementing and designing health
-data platforms in sub-Saharan African countries, and in line with the we
+data platforms in sub-Saharan African countries, and in line with the
 approach put forward by Mehl et al., we emphasis the need for
 convergence not only on i) open standards, but also on ii) open
 technologies (similar to our arguments discussed in the above), iii)
@@ -520,81 +519,107 @@ used, in practice the digital health community in the global South have
 \emph{de facto} converged towards FHIR as the common data model, not
 only for data exchange, but also for point-of-service systems to support
 clinical care and administration, and persistent, longitudinal storage
-of data in the so-called Shared Health Record to facilitate primary and
-secondary reuse \citep{cascini2024health}. The adoption of FHIR as the
-default standard for all three domains is fueled by the widespread
-availibility of open-access software infrastructure. For example, the
+of data in the so-called Shared Health Record to facilitate both primary
+and secondary reuse \citep{cascini2024health}. The adoption of FHIR as
+the default standard for all three domains is fueled by the widespread
+availibility of open-access software infrastructure which enables and
+end-to-end integration. To illustrate this, consider For example, the
 Open Health Stack (OHS) consists of a new suite of digital public goods,
 including a software development kit for building FHIR-native apps on
 Android, and analytics tooling to generate insights from FHIR data. This
 solution design blurs the distinction between the three original domains
 for health data standardization.
 
-{[} \ldots{} explain that this is possible because data is of lower
-complexity \ldots{} explain there is lot of open content, such as hxc
-specification \ldots{} explain that end-to-end chain of FHIR within
-OpenHIE specfication: InstantHIE lowers barrier for deployment of
-composition of FHIR-based components. A full FHIR-based solution is
-shown in \textbf{?@fig-openhie-on-fhir}. SHR is transactional system
-\ldots{} explain that SHR is a transactional system \ldots{} explain
-that because FHIR is based on web technologies, it lends it self
-serverless implementations, separation of storage and compute(ref
-composable data stack); and downward scaleability (running in the
-browser) \ldots{} how does this relate to ontologies/graph-based? FHIR
-can be expressed in graphs \citep{gebreslassie2023fhir4fair}{]}
+Arguments to add:
 
-In relation to the conventional perspective on `openness', which
-originally focused on open source and open standards as discussed above,
-has been superseded by ``\ldots{} conflicts about privacy, economic
-value extraction, the emergence of artificial intelligence, and the
-destabilizing effects of dominant platforms on (democratic) societies.
-Instead of access to information, the control of personal data has
-emerged in the age of platforms as the critical contention''
-\citep{keller2021paradox}. These conflicts are particularly salient in
-the healthcare domain, where people are generally willing to share their
-health data to receive the best care (primary use), while the attitude
-towards secondary use of health data varies greatly depending on the
-type and context . Case studies on digital platforms in healthcare point
-to an emerging pattern where the focus shifts from the digital platform
-with its defining software and hardware components, to the data as the
-primary object of interest in and of itself
-\citep{ozalp2022digital, alaimo2022organizations}. This observation ties
-into with the proposed research agenda by de Reuver et al.~to consider
-data platforms as a phenomenon distinct from digital platforms
-\citep{dereuver2018digital, dereuver2022openness}.
+\begin{itemize}
+\tightlist
+\item
+  explain that we don't see OpenEHR playing any role of significance.
+  Largest open source EHR implementations working with own data models.
+  Unlikely this will change any time soon
+  \citep{syzdykova2017opensource}
+\item
+  instead, we see that FHIR is in fact being adopted as a
+  point-of-service system. this is possible because data is of lower
+  complexity and the majority of smaller health facilities are resource
+  constrained anyway --\textgreater{} moving towards a scenario where an
+  app used by the health care worker is the system of record. Here we
+  see a convergence of the three domains put forward by Tsafnat: the
+  Shared Health Record serves as the back-end of the system-of-record,
+  it provides a transactional, persistent storage engine for enabling
+  information exchange and it is the longitudinal data that is used
+  downstream for analytics, monitoring etc.
+\item
+  explain example OHS/OpenSRP: maternal care
+\item
+  \begin{itemize}
+  \tightlist
+  \item
+    explain there is lot of complementatry open technologies and open
+    content, to get going
+  \item
+    and SDK to build apps
+  \item
+    Clinical workflows which can be configured in a FHIR-native front-
+    and backend
+  \item
+    InstantHIE to deploy a swarm of containers to provision all relevant
+    components
+  \item
+    leverage open source data \& analytics components to build data
+    stations/data warehouses at any scle
+  \end{itemize}
+\item
+  also technical advantages of FHIR
 
-Essentially, ``\ldots{} this paradox is that openness of data is both a
-challenge to and an enabler of concentrations of power. The ideas of
-open access and free reuse of information goods continue to be some of
-the most powerful challenges to the exclusive control by corporations
-and states over information goods. Yet making such resources open also
-exposes them to the imbalances of power that shape these societies --
-and in the worst cases serves to strengthen these imbalances.'' Put
-differently, having open standards is no guarantee that we will be able
-to breakthrough the current status quo with huge asymmetries in terms of
-bargaining power, access control and development resources related to
-health data sharing. We posit that having open data standards is a
-necessary condition in improving the current state of affairs, yet it is
-not a sufficient condition.
+  \begin{itemize}
+  \tightlist
+  \item
+    explain that because FHIR is based on web technologies, it lends it
+    self serverless implementations, separation of storage and
+    compute(ref composable data stack); and downward scaleability
+    (running in the browser)
+  \item
+    how does this relate to ontologies/graph-based? FHIR can be
+    expressed in graphs \citep{gebreslassie2023fhir4fair}{]}
+  \end{itemize}
+\end{itemize}
 
-The shift in perspective from digital platforms supporting primary data
-sharing toward data platforms supporting secondary data sharing is a
-contentious issue both in high income countries, with for example the
-ongoing efforts to establish a European Health Data Space
-\citep{otto2022designing}, and low- and middle income countries that are
-aiming to deploy nationwide health information exchanges to support
-primary and secondary data use at once \citep{mamuye2022health}. A
-better understanding of openness is particularly relevant if we are to
-realize a solidarity-based approach to health data sharing that i) gives
-people a greater control over their data as active decision makers; ii)
-ensures that the value of data is harnessed for public good; and iii)
-moves society towards equity and justice by counteracting dynamics of
-data extraction
-\citep{kickbusch2021lancet, prainsack2022data, prainsack2023beyond}.
+\begin{figure}
 
-More than a decade later, we observe that only a very small fraction of
-health IT systems are based on open source, the majority of which are
-used in LMICs which we will discuss later \citep{digitalpublicgoods}.
+\begin{minipage}{\linewidth}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{openhie.png}
+
+}
+
+\subcaption{a)}
+
+\end{figure}%
+
+\end{minipage}%
+\newline
+\begin{minipage}{\linewidth}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{ohs-endtoend.png}
+
+}
+
+\subcaption{b)}
+
+\end{figure}%
+
+\end{minipage}%
+
+\caption{\label{fig-openhie}The OpenHIE reference architecture (a) and
+themain components in the Open Health Stack (b).}
+
+\end{figure}%
 
 \section{Conclusion and outlook}\label{conclusion-and-outlook}
 
@@ -612,6 +637,11 @@ used in LMICs which we will discuss later \citep{digitalpublicgoods}.
   of that?) we can
 \item
   MPC as next step up from FL
+\item
+  More than a decade later, we observe that only a very small fraction
+  of health IT systems are based on open source, the majority of which
+  are used in LMICs which we will discuss later
+  \citep{digitalpublicgoods}.
 \end{itemize}
 
 
