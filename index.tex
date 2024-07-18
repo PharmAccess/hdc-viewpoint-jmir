@@ -327,7 +327,7 @@ for example, OpenEHR for administrative point-of-service systems.
 
 These external incentives have resulted in a large boost in both
 commercial and open source development activities in the FHIR ecosystem.
-One such example is the speed with which the Bulk FHIR API has been
+Illustrative of this is the speed with which the Bulk FHIR API has been
 defined and implemented in almost all major implementations
 \citep{mandl2020push, jones2021landscape}, and the the SQL-on-FHIR
 specification to make large-scale analysis of FHIR data accessible to a
@@ -342,9 +342,9 @@ illustrate this, a search on GitHub on ``FHIR'' yields 8.2 thousand
 results, ``OMOP or OHDSI'' one thousand results, and ``OpenEHR'' returns
 400 results. A quick-scan of the available open source components listed
 on the website of the three governing bodies HL7, OHDSI and OpenEHR,
-indicates that the ecosystem of FHIR and OMOP has a significantly larger
-offering of extensible and complementary open source components than
-OpenEHR.\footnote{FHIR:
+indicates that the ecosystem of FHIR and OMOP have a significantly
+larger offering of extensible and complementary open source components
+than OpenEHR.\footnote{FHIR:
   https://confluence.hl7.org/display/FHIR/Open+Source+Implementations .
   OMOP: https://www.ohdsi.org/software-tools/. OpenEHR:
   https://openehr.org/products\_tools/platform/}
@@ -385,7 +385,14 @@ which have been adopted at the beginning of 2024
 shows a high level overview of the platform, which comprises three areas
 (multiple use, applications and generic features) and a total of 26
 functional components (for details please refer to
-\citep{healthri2024agreements}).
+\citep{healthri2024agreements}). One of the prerequisites of this
+architecture is that organizations that participate in a federation of
+`data stations' use the same common data model to make the data
+Findable, Accessible, Interoperable and Resusable (FAIR). These FAIR
+data stations comprise components 7, 8 and 9 in
+Figure~\ref{fig-healthri-architecture}, i.e.~the data, metadata and
+APIs, respectively, through which this the data station can be accessed
+and used.
 
 \begin{figure}
 
@@ -401,23 +408,17 @@ Dutch health data infrastructure for research and innovation
 
 \end{figure}%
 
-One of the prerequisites of this architecture is that organizations that
-participate in a federation of `data stations' use the same common data
-model to make the data Findable, Accessible, Interoperable and Resusable
-(FAIR). These FAIR data stations comprise components 7, 8 and 9 in
-Figure~\ref{fig-healthri-architecture}, i.e.~the data, metadata and
-APIs, respectively, through which this the data station can be accessed
-and used. Following the line of reasoning of Tsafnat et al., OMOP would
-be the go-to standard for storing the longitudinal data in each of the
-data stations. Indeed, by now there are quite a few reports of
-real-world implementations of federated learning networks based on the
-OHDSI-OMOP stack, include a global infrastructure with 22 centres for
-COVID19 prediction models\citep{khalid2021standardized}, FeederNet in
-South Korea with 57 participating hospitals \citep{lee2022feedernet},
-Dutch multi-cohor dementia research with 9 centres
-\citep{mateus2024data}, the European severe heterogeneous asthma
-research collaboration \citep{kroes2022blueprint} and the recently
-initiated Belgian FEIN network {[}TO DO: add reference{]}.
+Following the line of reasoning of Tsafnat et al., OMOP would be the
+go-to standard for storing the longitudinal data in each of the data
+stations. Indeed, by now there are quite a few reports of real-world
+implementations of federated learning networks based on the OHDSI-OMOP
+stack, including a global infrastructure with 22 centres for COVID19
+prediction models\citep{khalid2021standardized}, FeederNet in South
+Korea with 57 participating hospitals \citep{lee2022feedernet}, Dutch
+multi-cohort dementia research with 9 centres \citep{mateus2024data},
+the European severe heterogeneous asthma research collaboration
+\citep{kroes2022blueprint} and the recently initiated Belgian FEIN
+network {[}TO DO: add reference{]}.
 
 For the PLUGIN project, however, we choose to adopt FHIR as the common
 data model because of its practicality and extensibility to be used in a
@@ -548,8 +549,8 @@ clinical care and administration, and persistent, longitudinal storage
 of data in the so-called Shared Health Record
 \citep{ohie2023unconference}. The adoption of FHIR as the default
 standard for all three domains is fueled by the widespread availibility
-of open-access software infrastructure which enables and end-to-end
-integration. To illustrate this, consider For example, the Open Health
+of open-access software infrastructure which enables an end-to-end
+integration. To illustrate this, consider for example, the Open Health
 Stack (OHS) consists of a new suite of digital public goods, including a
 software development kit for building FHIR-native apps on Android, and
 analytics tooling to generate insights from FHIR data. This solution
@@ -609,6 +610,22 @@ Arguments to add:
   \item
     how does this relate to ontologies/graph-based? FHIR can be
     expressed in graphs \citep{gebreslassie2023fhir4fair}{]}
+  \end{itemize}
+\item
+  main disadvantages
+
+  \begin{itemize}
+  \tightlist
+  \item
+    FHIR profiling and versions. Still lot of work to be done prevent
+    sprawl of profiles. Many LMICs still lack a standardized, national
+    core profile. Inititives such as the International Patient Summary
+    can be used as a stepping stone to provide arrive at a consistent
+    profile for high-volume, low-complexity care such as maternal and
+    antenatal care (ANC) and non-communicable diseases (NCD). In our
+    experience, deployment of these HIEs have a strong focus on enabling
+    primary care networks, where it makes economic sense to combine the
+    SHR as a shared system-of-record of such a network.
   \end{itemize}
 \end{itemize}
 
