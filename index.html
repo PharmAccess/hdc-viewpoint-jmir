@@ -216,6 +216,56 @@ Figure&nbsp;2: Principle of late binding with FHIR profiling mechanism
 <h2 class="anchored" data-anchor-id="health-data-standards-in-low--and-middle-income-countries">Health data standards in low- and middle income countries</h2>
 <p>It is a widely held belief that digital technologies have an important role to play in strengthening health systems in LMICs. Yet, also here the current fragmentation of health data stands in the way of scaling up digital health programme beyond project-centric, vertical solutions into sustainable health information exchanges. And also here, many have called to converge towards open standards <span class="citation" data-cites="mehl2023fullstac">(<a href="#ref-mehl2023fullstac" role="doc-biblioref">Mehl et al., 2023</a>)</span>. Based on our direct involvement in implementing and designing health data platforms in sub-Saharan African countries, and in line with the approach put forward by Mehl et al., we emphasis the need for convergence not only on i) open standards, but also on ii) open technologies (similar to our arguments discussed in the above), iii) open architectures (doucmentation, using open standards, of reusable enterprise architecture patterns for health systems) and iv) open content (representations of public health, health system or clinical knowledge to guide implementations).</p>
 <p>Many sub-Saharan African countries have adopted the OpenHIE framework <span class="citation" data-cites="openhie">(<a href="#ref-openhie" role="doc-biblioref"><span>“<span>OpenHIE Framework</span> v5.0,”</span> 2022</a>)</span> as the architectural blueprint for implementing nation-wide health information exchanges (HIE) <span class="citation" data-cites="mamuye2022health">(<a href="#ref-mamuye2022health" role="doc-biblioref">Mamuye et al., 2022</a>)</span>, including Nigeria <span class="citation" data-cites="dalhatu2023paper">(<a href="#ref-dalhatu2023paper" role="doc-biblioref">Dalhatu et al., 2023</a>)</span>, Kenya <span class="citation" data-cites="thaiya2021adoption">(<a href="#ref-thaiya2021adoption" role="doc-biblioref">Thaiya et al., 2021</a>)</span> and Tanzania <span class="citation" data-cites="nsaghurwe2021one">(<a href="#ref-nsaghurwe2021one" role="doc-biblioref">Nsaghurwe et al., 2021</a>)</span>. While the OpenHIE specification is agnostic to which data standard should be used, in practice the digital health community in the global South have <em>de facto</em> converged towards FHIR as the common data model, not only for data exchange, but also for point-of-service systems to support clinical care and administration, and persistent, longitudinal storage of data in the so-called Shared Health Record <span class="citation" data-cites="ohie2023unconference">(<a href="#ref-ohie2023unconference" role="doc-biblioref"><span>“<span>OHIE23 Unconference</span> 101,”</span> 2023</a>)</span>. The adoption of FHIR as the default standard for all three domains is fueled by the widespread availibility of open-access software infrastructure which enables an end-to-end integration. To illustrate this, consider for example, the Open Health Stack (OHS) consists of a new suite of digital public goods, including a software development kit for building FHIR-native apps on Android, and analytics tooling to generate insights from FHIR data. This solution design blurs the distinction between the three original domains for health data standardization.</p>
+<div id="tbl-kenya-facilities" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kenya-facilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Number of healthcare facilities in Kenya. Source: Kenya Health Facility Census, Ministry of Health, September 2023.
+</figcaption>
+<div aria-describedby="tbl-kenya-facilities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 61%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Level</th>
+<th>Description</th>
+<th style="text-align: right;">Number of facilities</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td>Dispensaries and private clincs, typically located in a school, industrial plant or other organization that dispenses medication and sometimes basic medical and dental treatment</td>
+<td style="text-align: right;">8,806</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td>Health centres, medium-sized units which cater for a population of about 80,000 people</td>
+<td style="text-align: right;">2,559</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td>Sub-county hospital, similar to health centres with additional facilities for more complex procedures</td>
+<td style="text-align: right;">971</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td>County referral hospital, regional centres which provide specialised care</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td>National referral hospital</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 <p>Arguments to add:</p>
 <ul>
 <li>explain that we don’t see OpenEHR playing any role of significance. Largest open source EHR implementations working with own data models. Unlikely this will change any time soon <span class="citation" data-cites="syzdykova2017opensource">(<a href="#ref-syzdykova2017opensource" role="doc-biblioref">Syzdykova et al., 2017</a>)</span></li>

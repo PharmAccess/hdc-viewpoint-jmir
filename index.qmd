@@ -111,7 +111,15 @@ It is a widely held belief that digital technologies have an important role to p
 
 Many sub-Saharan African countries have adopted the OpenHIE framework [@openhie] as the architectural blueprint for implementing nation-wide health information exchanges (HIE) [@mamuye2022health], including Nigeria [@dalhatu2023paper], Kenya [@thaiya2021adoption] and Tanzania [@nsaghurwe2021one]. While the OpenHIE specification is agnostic to which data standard should be used, in practice the digital health community in the global South have *de facto* converged towards FHIR as the common data model, not only for data exchange, but also for point-of-service systems to support clinical care and administration, and persistent, longitudinal storage of data in the so-called Shared Health Record [@ohie2023unconference]. The adoption of FHIR as the default standard for all three domains is fueled by the widespread availibility of open-access software infrastructure which enables an end-to-end integration. To illustrate this, consider for example, the Open Health Stack (OHS) consists of a new suite of digital public goods, including a software development kit for building FHIR-native apps on Android, and analytics tooling to generate insights from FHIR data. This solution design blurs the distinction between the three original domains for health data standardization.
 
+| Level | Description | Number of facilities | 
+|:---:|----------------------|--------:|
+| 2 | Dispensaries and private clincs, typically located in a school, industrial plant or other organization that dispenses medication and sometimes basic medical and dental treatment | 8,806 |
+| 3 | Health centres, medium-sized units which cater for a population of about 80,000 people | 2,559 |
+| 4 | Sub-county hospital, similar to health centres with additional facilities for more complex procedures |   971 |
+| 5 | County referral hospital, regional centres which provide specialised care |    34 |
+| 6 | National referral hospital | 5 |
 
+: Number of healthcare facilities in Kenya. Source: Kenya Health Facility Census, Ministry of Health, September 2023. {#tbl-kenya-facilities} 
 
 Arguments to add:
 
