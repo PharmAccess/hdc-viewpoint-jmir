@@ -1,5 +1,5 @@
 ---
-title: "Data inteoperability in context: the importance of open source implementations when choosing open standards"
+title: "Data interoperability in context: the importance of open source implementations when choosing open standards"
 format:
   elsevier-html:
     toc: true
@@ -33,9 +33,10 @@ author:
         country: the Netherlands
   - name: Andre Dekker
     affiliations:
-      - name: Maastricht University
+      - name: Department of Radiation Oncology (Maastro), GROW - Research Institute for Oncology and Reproduction, Maastricht University Medical Center+
         city: Maastricht
         country: the Netherlands 
+    orcid: 0000-0002-0422-7996
   - name: Melle Sieswerda
     affiliations:
       - name: Integral Cancer Registry Netherlands
@@ -79,6 +80,7 @@ Hence, we stress that beyond the evaluating the instrinic structure of an open s
 [^1]: See [https://en.wikipedia.org/wiki/GSM#Initial_European_development](https://en.wikipedia.org/wiki/GSM#Initial_European_development) for details.
 [^2]: https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/
 [^3]: FHIR: https://confluence.hl7.org/display/FHIR/Open+Source+Implementations . OMOP: https://www.ohdsi.org/software-tools/. OpenEHR: https://openehr.org/products_tools/platform/
+[^4]: https://deltaplus.azdelta.be/az-delta30/zorginnovatie
 
 ## Standarization of health data for federated learning
 
@@ -88,7 +90,7 @@ Federated learning (FL) is a learning paradigm that aims to address these issues
 
 ![Reference architecture for the Dutch health data infrastructure for research and innovation [@healthri2024agreements]](health-ri-architecture.png){#fig-healthri-architecture}
 
-Following the line of reasoning of Tsafnat et al., OMOP would be the go-to standard for storing the longitudinal data in each of the data stations. Indeed, by now there are quite a few reports of real-world implementations of federated learning networks based on the OHDSI-OMOP stack, including a global infrastructure with 22 centres for COVID19 prediction models[@khalid2021standardized], FeederNet in South Korea with 57 participating hospitals [@lee2022feedernet], Dutch multi-cohort dementia research with 9 centres [@mateus2024data], the European severe heterogeneous asthma research collaboration [@kroes2022blueprint] and the recently initiated Belgian FEIN network [TO DO: add reference].
+Following the line of reasoning of Tsafnat et al., OMOP would be the go-to standard for storing the longitudinal data in each of the data stations. Indeed, by now there are quite a few reports of real-world implementations of federated learning networks based on the OHDSI-OMOP stack, including a global infrastructure with 22 centres for COVID19 prediction models[@khalid2021standardized], FeederNet in South Korea with 57 participating hospitals [@lee2022feedernet], Dutch multi-cohort dementia research with 9 centres [@mateus2024data], the European severe heterogeneous asthma research collaboration [@kroes2022blueprint] and the recently initiated Belgian Federated Health Innovation Network (FHIN) [^4].
 
 For the PLUGIN project, however, we choose to adopt FHIR as the common data model because of its practicality and extensibility to be used in a Python-based data science stack, provenance of RESTful APIs out-of-the-box to facilitate easy integration with the container-based vantage6 FL framework, support of many healthcare terminologies and flexibility through the profiling mechanims [@choudhury2020personal;@smits2022improved]. Increasingly, other projects have reported the use of FHIR for persistent, longitudinal storage for FL. The CODA platform, which aims to implement a similar FL infrastructure in Canada, compared OMOP and FHIR and chose the latter as it has been found to support more granular mappings required for analytics [@mullie2023coda]. The fair4health project has implemented also based on FHIR, using their own open source framework for the federated learning infrastructure itself [@sinaci2024privacypreserving].
 
