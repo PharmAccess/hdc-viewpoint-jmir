@@ -1,0 +1,20 @@
+HL7 v2 was bigger than openEHR ever was
+foundational value of HL7 as one 
+
+"FHIR is a home run" 
+- HL v3 was a good idea, but using old technology
+- using json, APIs
+- "FHIR is elegant", "developer friendly"
+
+Add digital health hourglass (Estrin, original hourglass paper) --> put argnuments Matt here
+
+"Get away from apps, but move to health systems (digital health cards)"
+
+With FHIR, you can easily implement separate subsystems: facility registry, health worker registry
+
+"The only way you get people to work together, is when they don't know they work together"
+
+FHIR gives:
+
+- infrastructure
+- taxonomy = localization
