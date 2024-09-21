@@ -130,8 +130,8 @@ We agree with Tsafnat et al. that there is a dire need to converge to open data 
 
 ## Authors' Contributions
 
-DK contributed to the concept and design and prepared the first draft of the manuscript. AD, MS and BJV contributed to the section on federated learning. FH and MB contributed to the section on LMICs. YHY, JXD, and YDW contributed to the analysis of data. All authors contributed to the final revision and approved the final manuscript.
+DK contributed to the concept, design and prepared the first draft of the manuscript. AD, MS and BJV contributed to the section on federated learning. FH and MB contributed to the section on LMICs. All authors contributed to the final revision and approved the final manuscript.
 
 ## Conflicts of interests
 
-DK received funding from PharmAccess to conduct the work on LMICs reported here as a contractor. MB/ONA is the core developer of the open-source OpenSRP 2 framework.
+DK received funding from PharmAccess as a contractor to conduct the work on LMICs reported here. MB/ONA is the core developer of the open-source OpenSRP 2 framework.
