@@ -27,6 +27,7 @@ author:
       - name: PharmAccess Foundation
         city: Amsterdam
         country: the Netherlands
+    orcid: 0009-0007-4240-9786
   - name: Andre Dekker
     affiliations:
       - name: Department of Radiation Oncology (Maastro), GROW - Research Institute for Oncology and Reproduction, Maastricht University Medical Center+
@@ -41,6 +42,7 @@ author:
       - name: Maastricht University
         city: Maastricht
         country: the Netherlands
+    orcid: 0000-0003-2025-0771
   - name: Bart-Jan Verhoeff
     affiliations:
       - name: Expertisecentrum Zorgalgoritmen
