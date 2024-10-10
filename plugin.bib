@@ -8,6 +8,34 @@
   file = {/Users/dkapitan/Zotero/storage/7R9WM4UH/hcxprotocol.io.html}
 }
 
+@standard{2024openhie,
+  title = {{{OpenHIE Framework}} v5.2-En},
+  date = {2024-08-01},
+  url = {https://ohie.org/},
+  urldate = {2024-08-27},
+  abstract = {OpenHIE is a community of individuals who strive to develop health information exchanges that improve patient care, health, and so much more.},
+  langid = {american},
+  file = {/Users/dkapitan/Zotero/storage/55NPDMZ3/ohie.org.html}
+}
+
+@inproceedings{allaart2022vertical,
+  title = {Vertical {{Split Learning}} - an Exploration of Predictive Performance in Medical and Other Use Cases},
+  booktitle = {2022 {{International Joint Conference}} on {{Neural Networks}} ({{IJCNN}})},
+  author = {Allaart, Corinne G. and Keyser, Bjorn and Bal, Henri and Van Halteren, Aart},
+  date = {2022-07-18},
+  pages = {1--8},
+  publisher = {IEEE},
+  location = {Padua, Italy},
+  doi = {10.1109/IJCNN55064.2022.9891964},
+  url = {https://ieeexplore.ieee.org/document/9891964/},
+  urldate = {2024-10-07},
+  abstract = {In healthcare and other fields, data of an individual is often vertically partitioned across multiple organizations. Creating a centralized data store for AI algorithm development is cumbersome in such cases because of concerns like privacy and data ownership. Methods of distributed learning over vertically partitioned data could offer a solution here. While several studies have evaluated the feasibility, privacy and efficiency of such methods, an extensive evaluation of their impact on predictive performance compared to a centralized approach is missing. Vertical Split Learning (VSL) aims to provide vertical distributed learning through distributed neural network architectures. Our study adapts and applies VSL to 8 datasets, both in medicine and beyond, evaluating the impact of different network and (vertical) feature distributions on predictive performance. In most configurations VSL yields comparable predictive performance to its centralized counterparts. However, certain data and network distributions give an unexpected and severe loss of performance. Based on our findings we give some initial recommendations under which conditions VSL can be applied as a suitable alternative for data centralization.},
+  eventtitle = {2022 {{International Joint Conference}} on {{Neural Networks}} ({{IJCNN}})},
+  isbn = {978-1-72818-671-9},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/X2SM7XDJ/Allaart et al. - 2022 - Vertical Split Learning - an exploration of predictive performance in medical and other use cases.pdf}
+}
+
 @article{antunes2022federated,
   title = {Federated {{Learning}} for {{Healthcare}}: {{Systematic Review}} and {{Architecture Proposal}}},
   shorttitle = {Federated {{Learning}} for {{Healthcare}}},
@@ -117,6 +145,24 @@
   keywords = {Computational models,Ethics,Machine learning,Medical ethics}
 }
 
+@article{balch2023machine,
+  title = {Machine {{Learning}}–{{Enabled Clinical Information Systems Using Fast Healthcare Interoperability Resources Data Standards}}: {{Scoping Review}}},
+  shorttitle = {Machine {{Learning}}–{{Enabled Clinical Information Systems Using Fast Healthcare Interoperability Resources Data Standards}}},
+  author = {Balch, Jeremy A. and Ruppert, Matthew M. and Loftus, Tyler J. and Guan, Ziyuan and Ren, Yuanfang and Upchurch, Gilbert R. and Ozrazgat-Baslanti, Tezcan and Rashidi, Parisa and Bihorac, Azra},
+  date = {2023-08-24},
+  journaltitle = {JMIR Medical Informatics},
+  volume = {11},
+  number = {1},
+  pages = {e48297},
+  publisher = {JMIR Publications Inc., Toronto, Canada},
+  doi = {10.2196/48297},
+  url = {https://medinform.jmir.org/2023/1/e48297},
+  urldate = {2024-10-10},
+  abstract = {Background: Machine Learning-Enabled Clinical Information Systems (ML-CIS) have the potential to drive healthcare delivery and research. The Fast Healthcare Interoperability Resources (FHIR) data standard is increasingly applied in developing these systems. However, methods for applying FHIR to ML-CIS are variable. Objective: This study evaluates and compares the functionalities, strengths, and weaknesses of existing systems and proposes guidelines for optimizing future work with ML-CIS. Methods: Embase, PubMed, and Web of Science were searched for articles describing machine-learning systems used for clinical data analytics or decision support in compliance with FHIR standards. Information regarding each system’s functionality, data sources, formats, security, performance, resource requirements, scalability, strengths, and limitations were compared across systems. Results: 39 articles describing FHIR-based ML-CIS were divided into three categories according to their primary focus: Clinical Decision Support Systems (CDSSs) (n=18), data management and analytic platforms (n=10), or auxiliary modules and application programming interfaces (n=11). Model strengths included novel use of cloud systems, Bayesian networks, visualization strategies, and techniques for translating unstructured or free text data to FHIR frameworks. Most intelligent systems lacked electronic health record interoperability and externally validated evidence of clinical efficacy. Conclusions: Shortcomings in current ML-CIS can be addressed by incorporating modular and interoperable data management, analytic platforms, secure inter-institutional data exchange, and application programming interfaces with adequate scalability to support both real-time and prospective clinical applications using electronic health record platforms with diverse implementations.},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/ZUT8FMDJ/Balch et al. - 2023 - Machine Learning–Enabled Clinical Information Systems Using Fast Healthcare Interoperability Resourc.pdf;/Users/dkapitan/Zotero/storage/BZSWAX22/e48297.html}
+}
+
 @article{beck2019hourglass,
   title = {On the Hourglass Model},
   author = {Beck, Micah},
@@ -152,6 +198,14 @@
   langid = {english},
   keywords = {Health care,Public health},
   file = {/Users/dkapitan/Zotero/storage/JH8VKLQ9/Bönisch et al. - 2022 - Harvesting metadata in clinical care a crosswalk .pdf}
+}
+
+@article{cauchoisknowing,
+  title = {Knowing What {{You Know}}: Valid and Validated Confidence Sets in Multiclass and Multilabel Prediction},
+  author = {Cauchois, Maxime and Gupta, Suyash and Duchi, John C},
+  abstract = {We develop conformal prediction methods for constructing valid predictive confidence sets in multiclass and multilabel problems without assumptions on the data generating distribution. A challenge here is that typical conformal prediction methods—which give marginal validity (coverage) guarantees—provide uneven coverage, in that they address easy examples at the expense of essentially ignoring difficult examples. By leveraging ideas from quantile regression, we build methods that always guarantee correct coverage but additionally provide (asymptotically consistent) conditional coverage for both multiclass and multilabel prediction problems. To address the potential challenge of exponentially large confidence sets in multilabel prediction, we build tree-structured classifiers that efficiently account for interactions between labels. Our methods can be bolted on top of any classification model—neural network, random forest, boosted tree—to guarantee its validity. We also provide an empirical evaluation, simultaneously providing new validation methods, that suggests the more robust coverage of our confidence sets.},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/IVV2P7PT/Cauchois et al. - Knowing what You Know valid and validated conﬁdence sets in multiclass and multilabel prediction.pdf}
 }
 
 @article{chen2021automatic,
@@ -214,6 +268,13 @@
   urldate = {2024-09-20},
   abstract = {ClickHouse is a fast open-source column-oriented database management system that allows generating analytical data reports in real-time using SQL queries},
   file = {/Users/dkapitan/Zotero/storage/N6RERXVA/clickhouse.com.html}
+}
+
+@online{conformal,
+  title = {Conformal {{Prediction Sets Improve Human Decision Making}}},
+  url = {https://arxiv.org/html/2401.13744v3},
+  urldate = {2024-10-02},
+  file = {/Users/dkapitan/Zotero/storage/VJ3GD6ZW/2401.html}
 }
 
 @article{cremonesi2023need,
@@ -315,6 +376,17 @@
   abstract = {Unlocking the potential of open-source technologies for a more equitable world. Explore and learn more about digital public goods The Digital Public Goods Alliance is a multi-stakeholder initiative that accelerates the attainment of the sustainable development goals by facilitating the discovery, development, use of, and investment in digital public goods. Learn More},
   organization = {Digital Public Goods Alliance - Promoting digital public goods to create a more equitable world},
   file = {/Users/dkapitan/Zotero/storage/J5Y9ZM7S/digitalpublicgoods.net.html}
+}
+
+@online{duckdb,
+  title = {An In-Process {{SQL OLAP}} Database Management System},
+  author = {User, GitHub},
+  url = {https://duckdb.org/},
+  urldate = {2024-10-10},
+  abstract = {DuckDB is an in-process SQL OLAP database management system. Simple, feature-rich, fast \& open source.},
+  langid = {english},
+  organization = {DuckDB},
+  file = {/Users/dkapitan/Zotero/storage/K5X9337J/duckdb.org.html}
 }
 
 @software{ehrbase,
@@ -558,6 +630,22 @@
   file = {/Users/dkapitan/Zotero/storage/689HC47Z/e44.html}
 }
 
+@inproceedings{johansson2021calibrating,
+  title = {Calibrating Multi-Class Models},
+  booktitle = {Proceedings of the {{Tenth Symposium}} on {{Conformal}} and {{Probabilistic Prediction}} and {{Applications}}},
+  author = {Johansson, Ulf and Löfström, Tuwe and Boström, Henrik},
+  date = {2021-09-20},
+  pages = {111--130},
+  publisher = {PMLR},
+  issn = {2640-3498},
+  url = {https://proceedings.mlr.press/v152/johansson21a.html},
+  urldate = {2024-10-01},
+  abstract = {Predictive models communicating algorithmic confidence are very informative, but only  if well-calibrated and sharp, i.e., providing accurate probability estimates adjusted for each instance.  While almost all machine learning algorithms are able to produce probability estimates, these are  often poorly calibrated, thus requiring external calibration. For multiclass problems, external  calibration has typically been done using one-vs-all or all-vs-all schemes, thus adding to the  computational complexity, but also making it impossible to analyze and inspect the predictive  models. In this paper, we suggest a novel approach for calibrating inherently multi-class models.  Instead of providing a probability distribution over all labels, the estimation is of the probability that  the class label predicted by the underlying model is correct. In an extensive empirical study, it is  shown that the suggested approach, when applied to both Platt scaling and Venn-Abers, is able to  improve the probability estimates from decision trees, random forests and extreme gradient  boosting.},
+  eventtitle = {Conformal and {{Probabilistic Prediction}} and {{Applications}}},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/DL8W5H5S/Johansson et al. - 2021 - Calibrating multi-class models.pdf}
+}
+
 @article{johnson2015data,
   title = {A {{Data Quality Ontology}} for the {{Secondary Use}} of {{EHR Data}}},
   author = {Johnson, Steven G. and Speedie, Stuart and Simon, Gyorgy and Kumar, Vipin and Westra, Bonnie L.},
@@ -639,6 +727,14 @@
   abstract = {Background and objective As a response to the ongoing COVID-19 pandemic, several prediction models in the existing literature were rapidly developed, with the aim of providing evidence-based guidance. However, none of these COVID-19 prediction models have been found to be reliable. Models are commonly assessed to have a risk of bias, often due to insufficient reporting, use of non-representative data, and lack of large-scale external validation. In this paper, we present the Observational Health Data Sciences and Informatics (OHDSI) analytics pipeline for patient-level prediction modeling as a standardized approach for rapid yet reliable development and validation of prediction models. We demonstrate how our analytics pipeline and open-source software tools can be used to answer important prediction questions while limiting potential causes of bias (e.g., by validating phenotypes, specifying the target population, performing large-scale external validation, and publicly providing all analytical source code). Methods We show step-by-step how to implement the analytics pipeline for the question: ‘In patients hospitalized with COVID-19, what is the risk of death 0 to 30 days after hospitalization?’. We develop models using six different machine learning methods in a USA claims database containing over 20,000 COVID-19 hospitalizations and externally validate the models using data containing over 45,000 COVID-19 hospitalizations from South Korea, Spain, and the USA. Results Our open-source software tools enabled us to efficiently go end-to-end from problem design to reliable Model Development and evaluation. When predicting death in patients hospitalized with COVID-19, AdaBoost, random forest, gradient boosting machine, and decision tree yielded similar or lower internal and external validation discrimination performance compared to L1-regularized logistic regression, whereas the MLP neural network consistently resulted in lower discrimination. L1-regularized logistic regression models were well calibrated. Conclusion Our results show that following the OHDSI analytics pipeline for patient-level prediction modelling can enable the rapid development towards reliable prediction models. The OHDSI software tools and pipeline are open source and available to researchers from all around the world.},
   keywords = {COVID-19,Data harmonization,Data quality control,Distributed data network,Machine learning,Risk prediction},
   file = {/Users/dkapitan/Zotero/storage/D7HZSKV3/Khalid et al. - 2021 - A standardized analytics pipeline for reliable and.pdf}
+}
+
+@article{khanvertical,
+  title = {Vertical {{Federated Learning}}: {{A Structured Literature Review}}},
+  author = {Khan, Afsana},
+  abstract = {Federated Learning (FL) has emerged as a promising distributed learning paradigm with an added advantage of data privacy. With the growing interest in having collaboration among data owners, FL has gained significant attention of organizations. The idea of FL is to enable collaborating participants train machine learning (ML) models on decentralized data without breaching privacy. In simpler words, federated learning is the approach of “bringing the model to the data, instead of bringing the data to the model”. Federated learning, when applied to data which is partitioned vertically across participants, is able to build a complete ML model by combining local models trained only using the data with distinct features at the local sites. This architecture of FL is referred to as vertical federated learning (VFL), which differs from the conventional FL on horizontally partitioned data. As VFL is different from conventional FL, it comes with its own issues and challenges. In this paper, we present a structured literature review discussing the state-of-the-art approaches in VFL. Additionally, the literature review highlights the existing solutions to challenges in VFL and provides potential research directions in this domain.},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/D59A9FNF/Khan - Vertical Federated Learning A Structured Literature Review.pdf}
 }
 
 @article{kroes2022blueprint,
@@ -910,14 +1006,21 @@
   file = {/Users/dkapitan/Zotero/storage/NYUQCHBP/platform.html}
 }
 
-@standard{openhie,
-  title = {{{OpenHIE Framework}} v5.2-En},
-  date = {2024-08-01},
-  url = {https://ohie.org/},
-  urldate = {2024-08-27},
-  abstract = {OpenHIE is a community of individuals who strive to develop health information exchanges that improve patient care, health, and so much more.},
-  langid = {american},
-  file = {/Users/dkapitan/Zotero/storage/55NPDMZ3/ohie.org.html}
+@incollection{papadopoulos2014crossconformal,
+  title = {A {{Cross-Conformal Predictor}} for {{Multi-label Classification}}},
+  author = {Papadopoulos, Harris},
+  date = {2014},
+  volume = {8827},
+  eprint = {2211.16238},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  pages = {241--250},
+  doi = {10.1007/978-3-662-44722-2_26},
+  url = {http://arxiv.org/abs/2211.16238},
+  urldate = {2024-10-01},
+  abstract = {Unlike the typical classification setting where each instance is associated with a single class, in multi-label learning each instance is associated with multiple classes simultaneously. Therefore the learning task in this setting is to predict the subset of classes to which each instance belongs. This work examines the application of a recently developed framework called Conformal Prediction (CP) to the multi-label learning setting. CP complements the predictions of machine learning algorithms with reliable measures of confidence. As a result the proposed approach instead of just predicting the most likely subset of classes for a new unseen instance, also indicates the likelihood of each predicted subset being correct. This additional information is especially valuable in the multi-label setting where the overall uncertainty is extremely high.},
+  keywords = {Computer Science - Machine Learning},
+  file = {/Users/dkapitan/Zotero/storage/9HJCVPUI/Papadopoulos - 2014 - A Cross-Conformal Predictor for Multi-label Classification.pdf;/Users/dkapitan/Zotero/storage/HS2LASR8/2211.html}
 }
 
 @article{pedreira2023composable,
