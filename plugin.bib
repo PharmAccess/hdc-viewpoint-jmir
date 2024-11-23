@@ -8,26 +8,6 @@
   file = {/Users/dkapitan/Zotero/storage/7R9WM4UH/hcxprotocol.io.html}
 }
 
-@standard{2024apache,
-  title = {Apache {{Arrow}}},
-  date = {2024-09-20},
-  url = {https://arrow.apache.org/},
-  urldate = {2024-09-20},
-  abstract = {A cross-language development platform for in-memory analytics},
-  langid = {american},
-  file = {/Users/dkapitan/Zotero/storage/TIBXI35H/arrow.apache.org.html}
-}
-
-@standard{2024apachea,
-  title = {Apache {{Parquet}}},
-  date = {2024-09-20},
-  url = {https://parquet.apache.org/},
-  urldate = {2024-09-20},
-  abstract = {The Apache Parquet Website},
-  langid = {english},
-  file = {/Users/dkapitan/Zotero/storage/6ZYX6IMX/parquet.apache.org.html}
-}
-
 @inproceedings{allaart2022vertical,
   title = {Vertical {{Split Learning}} - an Exploration of Predictive Performance in Medical and Other Use Cases},
   booktitle = {2022 {{International Joint Conference}} on {{Neural Networks}} ({{IJCNN}})},
@@ -65,11 +45,31 @@
   file = {/Users/dkapitan/Zotero/storage/94L35GLV/Antunes et al. - 2022 - Federated Learning for Healthcare Systematic Revi.pdf}
 }
 
-@standard{apache,
+@standard{apache-arrow,
+  title = {Apache {{Arrow}}},
+  date = {2024-09-20},
+  url = {https://arrow.apache.org/},
+  urldate = {2024-09-20},
+  abstract = {A cross-language development platform for in-memory analytics},
+  langid = {american},
+  file = {/Users/dkapitan/Zotero/storage/TIBXI35H/arrow.apache.org.html}
+}
+
+@standard{apache-iceberg,
   title = {Apache {{Iceberg}}},
   url = {https://iceberg.apache.org/},
   urldate = {2024-09-20},
   file = {/Users/dkapitan/Zotero/storage/WDUZH5EF/iceberg.apache.org.html}
+}
+
+@standard{apache-parquet,
+  title = {Apache {{Parquet}}},
+  date = {2024-09-20},
+  url = {https://parquet.apache.org/},
+  urldate = {2024-09-20},
+  abstract = {The Apache Parquet Website},
+  langid = {english},
+  file = {/Users/dkapitan/Zotero/storage/6ZYX6IMX/parquet.apache.org.html}
 }
 
 @inproceedings{armbrust2021lakehouse,
@@ -424,6 +424,22 @@
   urldate = {2024-05-30},
   langid = {english},
   file = {/Users/dkapitan/Zotero/storage/RTZU9IAH/firely2023fhir-in-us.pdf}
+}
+
+@online{garst2023comprehensive,
+  title = {A Comprehensive Experimental Comparison between Federated and Centralized Learning},
+  author = {Garst, Swier and Dekker, Julian and Reinders, Marcel},
+  date = {2023-07-29},
+  eprinttype = {bioRxiv},
+  eprintclass = {New Results},
+  pages = {2023.07.26.550615},
+  doi = {10.1101/2023.07.26.550615},
+  url = {https://www.biorxiv.org/content/10.1101/2023.07.26.550615v1},
+  urldate = {2024-10-24},
+  abstract = {Purpose Federated learning is an upcoming machine learning paradigm which allows data from multiple sources to be used for training of classifiers without the data leaving the source it originally resides. This can be highly valuable for use cases such as medical research, where gathering data at a central location can be quite complicated due to privacy and legal concerns of the data. In such cases, federated learning has the potential to vastly speed up the research cycle. Although federated and central learning have been compared from a theoretical perspective, an extensive experimental comparison of performances and learning behavior still lacks. Methods We have performed a comprehensive experimental comparison between federated and centralized learning. We evaluated various classifiers on various datasets exploring influences of different sample distributions as well as different class distributions across the clients. Results The results show similar performances under a wide variety of settings between the federated and central learning strategies. Federated learning is able to deal with various imbalances in the data distributions. It is sensitive to batch effects between different datasets when they coincide with location, similar as with central learning, but this setting might go unobserved more easily. Conclusion Federated learning seems robust to various challenges such as skewed data distributions, high data dimensionality, multiclass problems and complex models. Taken together, the insights from our comparison gives much promise for applying federated learning as an alternative to sharing data.},
+  langid = {english},
+  pubstate = {prepublished},
+  file = {/Users/dkapitan/Zotero/storage/VWMUG34U/Garst et al. - 2023 - A comprehensive experimental comparison between federated and centralized learning.pdf}
 }
 
 @article{gruendner2019ketos,
@@ -1163,7 +1179,7 @@
   file = {/Users/dkapitan/Zotero/storage/BCT5T3VP/Smits et al. - 2022 - An Improved Infrastructure for Privacy-Preserving .pdf}
 }
 
-@standard{sql,
+@standard{sql-on-fhir-v2,
   title = {{{SQL}} on {{FHIR}} v2.0.0-Pre},
   url = {https://build.fhir.org/ig/FHIR/sql-on-fhir-v2/},
   urldate = {2024-09-20},
@@ -1277,6 +1293,21 @@
   file = {/Users/dkapitan/Zotero/storage/HCRU7DUV/e55779.html}
 }
 
+@inproceedings{vandaalen2023federated,
+  title = {Federated {{Bayesian Network Ensembles}}},
+  booktitle = {2023 {{Eighth International Conference}} on {{Fog}} and {{Mobile Edge Computing}} ({{FMEC}})},
+  author = {family=Daalen, given=Florian, prefix=van, useprefix=true and Ippel, Lianne and Dekker, Andre and Bermejo, Inigo},
+  date = {2023-09},
+  pages = {22--33},
+  doi = {10.1109/FMEC59375.2023.10306230},
+  url = {https://ieeexplore.ieee.org/document/10306230},
+  urldate = {2024-10-24},
+  abstract = {Federated learning allows us to run machine learning algorithms on decentralized data when data sharing is not permitted due to privacy concerns. Ensemble-based learning works by training multiple (weak) classifiers whose output is aggregated. Federated ensembles are ensembles applied to a federated setting, where each classifier in the ensemble is trained on one data location. In this article, we explore the use of federated Bayesian network ensembles (FBNE) in a range of experiments and compare their performance with both locally trained models and models trained with VertiBayes, a federated learning algorithm to train Bayesian networks from decentralized data. Our results show that FBNE outperform local models and provides, among other advantages, a significant increase in training speed compared with VertiBayes while maintaining a similar performance in most settings. We show that FBNE are a potentially useful tool within the federated learning toolbox, especially when local populations are heavily biased, or there is a strong imbalance in population size across parties. We discuss the advantages and disadvantages of this approach in terms of time complexity, model accuracy, privacy protection, and model interpretability.},
+  eventtitle = {2023 {{Eighth International Conference}} on {{Fog}} and {{Mobile Edge Computing}} ({{FMEC}})},
+  keywords = {Bayesian network,Data models,Ensemble Learning,Federated Ensembles,Federated learning,Federated Learning,Multi-access edge computing,Privacy,privacy preserving,Runtime,Sociology,Training},
+  file = {/Users/dkapitan/Zotero/storage/67UJDRZ8/van Daalen et al. - 2023 - Federated Bayesian Network Ensembles.pdf;/Users/dkapitan/Zotero/storage/NGGXQVQT/10306230.html}
+}
+
 @inproceedings{vandenberg2024empirical,
   title = {Empirical {{Research}} on {{Ensuring Ethical AI}} in {{Fraud Detection}} of {{Insurance Claims}}: {{A Field Study}} of {{Dutch Insurers}}},
   shorttitle = {Empirical {{Research}} on {{Ensuring Ethical AI}} in {{Fraud Detection}} of {{Insurance Claims}}},
@@ -1314,6 +1345,21 @@
   langid = {english},
   annotation = {Page Version ID: 1245675274},
   file = {/Users/dkapitan/Zotero/storage/PE243J9U/GSM.html}
+}
+
+@online{zhang2023secure,
+  title = {Secure and {{Private Healthcare Analytics}}: {{A Feasibility Study}} of {{Federated Deep Learning}} with {{Personal Health Train}}},
+  shorttitle = {Secure and {{Private Healthcare Analytics}}},
+  author = {Zhang, Chong and Choudhury, Ananya and Volmer, Leroy and Soest, Johan and Bermejo, Inigo and Dekker, Andre and Gomes, Aiara Lobo and Wee, Leonard},
+  date = {2023-07-19},
+  eprinttype = {Research Square},
+  issn = {2693-5015},
+  doi = {10.21203/rs.3.rs-3158418/v1},
+  url = {https://www.researchsquare.com/article/rs-3158418/v1},
+  urldate = {2024-10-24},
+  abstract = {Objective In this article, we aim to present a new open-source Federated Learning infrastructure by conducting several proof-of-concept experiments. We seek to prove the reliability of the infrastructure to develop global models without sharing private patient data.Materials and Methods We applied the Personal Health Train (PHT) principles using the Vantage6 software to train a neural network to classify head and neck cancer patients\&amp;rsquo; distant metastasis using federated learning algorithms in a privacy preserving manner. Head and neck cancer patient data from four cohorts were assigned to two data stations. During each training iteration, model weights were averaged and sent back to central node.Results We compared the area under the receiver operating characteristic curves (AUCs) and model weights between the centralized and federated learning scenarios. The results showed that our federated infrastructure was able to achieve similar predicting power as in the centralized case. Different federated learning model weights aggregation methods were tested. The experiment results showed that federated learning models reached best performance when we aggregate model weights per epoch.Discussion and Conclusion PHT and FAIR data principles can efficiently calculate quality indicators in a privacy-preserving federated approach and the work can be scaled up both nationally and internationally. Despite this, application of the methodology was largely hampered by ELSI issues. However, the lessons learned from this study can provide other hospitals and researchers to adapt to the process easily and take effective measures in building quality of care infrastructures.},
+  pubstate = {prepublished},
+  file = {/Users/dkapitan/Zotero/storage/QSIP8H5B/Zhang et al. - 2023 - Secure and Private Healthcare Analytics A Feasibility Study of Federated Deep Learning with Persona.pdf}
 }
 
 @incollection{zohner2019challenges,
