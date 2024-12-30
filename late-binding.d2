@@ -1,18 +1,25 @@
 FHIR R4: {
-    shape: oval
-    label.near: outside-left-center
-    zibs 2020: {
-      shape: oval
-      label.near: outside-left-center
-      nl-core: {
-        shape: oval
-        label.near: outside-left-center
-        IKNL NCR-EHR: {
-          shape: oval
-        }
-        Some Other Profile: {
-          shape: oval
-        }
+  shape: rectangle
+  label.near: top-left
+  style.fill: "#e6edff"
+  zibs 2020: {
+    shape: rectangle
+    label.near: top-left
+    style.fill: "#c8d6f9"
+    nl-core: {
+      shape: rectangle
+      label.near: top-left
+      style.fill: "#84a1ec"
+      IKNL NCR-EHR: {
+        shape: rectangle
+        style.fill: "#5679d5"
+        style.font-color: "#ffffff"
+      }
+      Some Other Profile: {
+        shape: rectangle
+        style.fill: "#5679d5"
+        style.font-color: "#ffffff"
       }
     }
   }
+}
