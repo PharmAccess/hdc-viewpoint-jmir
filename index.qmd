@@ -234,7 +234,7 @@ LMIC: Low and middle-income countries<br>
 ML: Machine Learning<br>
 OHDSI: Observational Health Data Sciences and Informatics<br>
 OMOP: Observational Medical Outcomes Partnership<br>
-OSS: Open Source Software<br>
+OSS: Open-Source Software<br>
 SHR: Shared Health Record<br>
 REST: representational state transfer<br>
 TCP/IP: Transmission Control Protocol/Internet Protocol<br>
