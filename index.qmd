@@ -48,11 +48,13 @@ author:
       - name: Expertisecentrum Zorgalgoritmen
         city: Utrecht
         country: the Netherlands
+    orcid: 0009-0002-3292-2424
   - name: Matt Berg
     affiliations:
       - name: Ona
         city: Burlington
         country: USA
+    orcid: 0009-0003-3041-5709
   
 
 abstract: |
