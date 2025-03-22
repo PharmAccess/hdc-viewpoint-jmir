@@ -64,6 +64,11 @@ reference-section-title: References
 csl: american-medical-association-brackets.csl
 bibliography: plugin.bib
 ---
+::: {.callout-note}
+## This paper was accepted for publication in Journal of Medical Internet Research on 16th March 2025.
+
+Unfortunately, an older version of the accepted manuscript is shown on the [JMIR preprint server](https://preprints.jmir.org/preprint/66616/accepted) due to an error when uploading the manuscript. The correct final accepted version is shown here.
+:::
 
 ## Open standards are a necessary but not sufficient condition for interoperability
 
