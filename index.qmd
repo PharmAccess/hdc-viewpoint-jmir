@@ -1,7 +1,7 @@
 ---
 title: "Data interoperability in context: the importance of open-source implementations when choosing open standards"
 format:
-  elsevier-html:
+  html:
     toc: true
     toc-depth: 2
     fig-cap-location: top
@@ -63,6 +63,7 @@ keywords: [health data interoperability, OMOP, openEHR, FHIR, secondary use, dat
 reference-section-title: References
 csl: american-medical-association-brackets.csl
 bibliography: plugin.bib
+doi: https://doi.org/10.2196/66616
 ---
 ::: {.callout-note}
 ## This paper was accepted for publication in Journal of Medical Internet Research on 16th March 2025.
@@ -71,6 +72,10 @@ Unfortunately, an older version of the accepted manuscript is shown on the [JMIR
 :::
 
 ## Open standards are a necessary but not sufficient condition for interoperability
+
+::: {.column-margin}
+![](toc-image.png)
+:::
 
 "A paradox of health care interoperability is the existence of a large number of standards with significant overlap among them," say Tsafnat et al., followed by a call to action towards the health informatics community to put effort into establishing convergence and preventing collision [@tsafnat2024converge]. To do so, they propose to converge on three open standards, namely i) openEHR for clinical care and administration; ii) Fast Health Interoperability Resources (FHIR) for data exchange and iii) Observational Medical Outcomes Partnership Common Data Model (OMOP) for longitudinal analysis. They argue that open data standards, backed by engaged communities, hold an advantage over proprietary ones and therefore should be chosen as the steppingstones towards achieving true interoperability.
 
