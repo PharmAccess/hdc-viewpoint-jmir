@@ -36,7 +36,7 @@ author:
     orcid: 0000-0002-0422-7996
   - name: Melle Sieswerda
     affiliations:
-      - name: Integral Cancer Registry Netherlands
+      - name: Netherlands Comprehensive Cancer Organisation
         city: Eindhoven
         country: the Netherlands
       - name: Maastricht University
